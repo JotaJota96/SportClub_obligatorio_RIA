@@ -44,3 +44,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# agregado esto porque Kubuntu me genera estos archivos en todas las carpetas
+**/.directory
