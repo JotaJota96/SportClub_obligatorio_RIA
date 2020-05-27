@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Convenio } from '../clases/convenio';
 
 @Injectable({
   providedIn: 'root'

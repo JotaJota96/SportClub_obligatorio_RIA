@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { LoginDTO } from '../clases/login-dto';
+import { RegistroDTO } from '../clases/registro-dto';
 
 @Injectable({
   providedIn: 'root'

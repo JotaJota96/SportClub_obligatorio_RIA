@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { PrestadorDeSalud } from '../clases/prestador-de-salud';
 
 @Injectable({
   providedIn: 'root'

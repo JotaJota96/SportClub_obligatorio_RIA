@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Categoria } from '../clases/categoria';
 
 @Injectable({
   providedIn: 'root'

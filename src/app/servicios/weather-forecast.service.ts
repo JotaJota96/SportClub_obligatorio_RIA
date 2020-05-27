@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { WeatherForecast } from '../clases/weather-forecast';
 
 @Injectable({
   providedIn: 'root'
