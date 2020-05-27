@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CategoriasService {
 
-  apiURL: string = "http://159.65.222.132:802/api/Categorias";
+  private apiURL: string = "http://159.65.222.132:802/api/Categorias";
 
   constructor(protected http: HttpClient) { }
 }

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MediosDePagoService {
 
-  apiURL: string = "http://159.65.222.132:802/api/MediosDePago";
+  private apiURL: string = "http://159.65.222.132:802/api/MediosDePago";
 
   constructor(protected http: HttpClient) { }
 }

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WeatherForecastService {
 
-  apiURL: string = "http://159.65.222.132:802/WeatherForecast";
+  private apiURL: string = "http://159.65.222.132:802/WeatherForecast";
 
   constructor(protected http: HttpClient) { }
 }
