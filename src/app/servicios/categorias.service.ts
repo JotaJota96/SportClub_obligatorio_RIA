@@ -9,6 +9,22 @@ export class CategoriasService {
   private apiURL: string = "http://159.65.222.132:802/api/Categorias";
 
   constructor(protected http: HttpClient) { }
+
+  getAll(){
+
+  }
+  create(datos:Categoria){
+    
+  }
+  get(id:number){
+    
+  }
+  edit(datos:Categoria){
+    
+  }
+  delete(id:number){
+    
+  }
 }
 /*
 Categorias

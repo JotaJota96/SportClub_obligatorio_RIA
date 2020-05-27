@@ -9,6 +9,23 @@ export class ActividadesService {
   private apiURL: string = "http://159.65.222.132:802/api/Actividades";
 
   constructor(protected http: HttpClient) { }
+
+  getAll(){
+
+  }
+  create(datos:Actividad){
+    
+  }
+  get(id:number){
+    
+  }
+  edit(datos:Actividad){
+    
+  }
+  delete(id:number){
+    
+  }
+
 }
 /*
 Actividades

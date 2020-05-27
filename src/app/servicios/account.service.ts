@@ -9,6 +9,14 @@ export class AccountService {
   private apiURL: string = "http://159.65.222.132:802/api/Account​";
 
   constructor(protected http: HttpClient) { }
+
+  login(datos:LoginDTO){
+
+  }
+
+  register(datos:RegistroDTO){
+
+  }
 }
 /*
 Account

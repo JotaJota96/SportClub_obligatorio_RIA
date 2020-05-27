@@ -9,6 +9,22 @@ export class ConveniosService {
   private apiURL: string = "http://159.65.222.132:802/api/Convenios";
 
   constructor(protected http: HttpClient) { }
+
+  getAll(){
+
+  }
+  create(datos:Convenio){
+    
+  }
+  get(id:number){
+    
+  }
+  edit(datos:Convenio){
+    
+  }
+  delete(id:number){
+    
+  }
 }
 /*
 Convenios

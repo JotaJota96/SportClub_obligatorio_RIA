@@ -9,6 +9,22 @@ export class MediosDePagoService {
   private apiURL: string = "http://159.65.222.132:802/api/MediosDePago";
 
   constructor(protected http: HttpClient) { }
+
+  getAll(){
+
+  }
+  create(datos:MedioDePago){
+    
+  }
+  get(id:number){
+    
+  }
+  edit(datos:MedioDePago){
+    
+  }
+  delete(id:number){
+    
+  }
 }
 /*
 MediosDePago
