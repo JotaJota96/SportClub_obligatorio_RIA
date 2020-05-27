@@ -12,19 +12,10 @@ export class WeatherForecastService {
   constructor(protected http: HttpClient) { }
 
   getAll(){
-
+    return this.http.get(this.apiURL);
   }
-  create(datos:WeatherForecast){
-    
-  }
-  get(id:number){
-    
-  }
-  edit(datos:WeatherForecast){
-    
-  }
-  delete(id:number){
-    
+  getAllClose(id:number){
+    return this.http.get(this.apiURL + '/close');
   }
 }
 /*

@@ -13,11 +13,11 @@ export class AccountService {
   constructor(protected http: HttpClient) { }
 
   login(datos:LoginDTO){
-
+    return this.http.post(this.apiURL+'/login', datos);
   }
 
   register(datos:RegistroDTO){
-
+    return this.http.post(this.apiURL+'/register', datos);
   }
 }
 /*

@@ -12,19 +12,19 @@ export class PreciosService {
   constructor(protected http: HttpClient) { }
 
   getAll(){
-
+    return this.http.get(this.apiURL);
   }
   create(datos:Precio){
-    
+    return this.http.post(this.apiURL, datos);
   }
   get(id:number){
-    
+    return this.http.get(this.apiURL + '/' + id);
   }
   edit(datos:Precio){
-    
+    return this.http.put(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
-    
+    return this.http.delete(this.apiURL + '/' + id);
   }
 }
 /*
