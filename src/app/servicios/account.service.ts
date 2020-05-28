@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoginDTO } from '../clases/login-dto';
 import { RegistroDTO } from '../clases/registro-dto';
 import { LoginResponseDTO } from '../clases/login-response-dto';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,18 @@ export class AccountService {
   constructor(protected http: HttpClient) { }
 
   login(datos:LoginDTO){
+    /*
+    Recordar almacenar los datos obtenidos con:
+    localStorage.setItem("loginData", JSON.stringify(data));
+    */
     return this.http.post<LoginResponseDTO>( this.apiURL + '/login', datos);
   }
 
   register(datos:RegistroDTO){
+    /*
+    Recordar almacenar los datos obtenidos con:
+    localStorage.setItem("loginData", JSON.stringify(data));
+    */
     return this.http.post<LoginResponseDTO>(this.apiURL+'/register', datos);
   }
 }
