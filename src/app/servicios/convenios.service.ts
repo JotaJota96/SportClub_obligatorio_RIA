@@ -12,19 +12,19 @@ export class ConveniosService {
   constructor(protected http: HttpClient) { }
 
   getAll(){
-    return this.http.get(this.apiURL);
+    return this.http.get<Convenio[]>(this.apiURL);
   }
   create(datos:Convenio){
-    return this.http.post(this.apiURL, datos);
+    return this.http.post<Convenio>(this.apiURL, datos);
   }
   get(id:number){
-    return this.http.get(this.apiURL + '/' + id);
+    return this.http.get<Convenio>(this.apiURL + '/' + id);
   }
   edit(datos:Convenio){
-    return this.http.put(this.apiURL + '/' + datos.id, datos);
+    return this.http.put<Convenio>(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
-    return this.http.delete(this.apiURL + '/' + id);
+    return this.http.delete<Convenio>(this.apiURL + '/' + id);
   }
 }
 /*

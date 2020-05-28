@@ -12,10 +12,10 @@ export class WeatherForecastService {
   constructor(protected http: HttpClient) { }
 
   getAll(){
-    return this.http.get(this.apiURL);
+    return this.http.get<WeatherForecast[]>(this.apiURL);
   }
   getAllClose(id:number){
-    return this.http.get(this.apiURL + '/close');
+    return this.http.get<WeatherForecast[]>(this.apiURL + '/close');
   }
 }
 /*

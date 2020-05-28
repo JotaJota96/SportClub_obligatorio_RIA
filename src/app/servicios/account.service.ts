@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginDTO } from '../clases/login-dto';
 import { RegistroDTO } from '../clases/registro-dto';
+import { LoginResponseDTO } from '../clases/login-response-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,11 @@ export class AccountService {
   constructor(protected http: HttpClient) { }
 
   login(datos:LoginDTO){
-    return this.http.post( this.apiURL + '/login', datos);
+    return this.http.post<LoginResponseDTO>( this.apiURL + '/login', datos);
   }
 
   register(datos:RegistroDTO){
-    return this.http.post(this.apiURL+'/register', datos);
+    return this.http.post<LoginResponseDTO>(this.apiURL+'/register', datos);
   }
 }
 /*

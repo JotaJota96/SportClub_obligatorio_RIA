@@ -12,19 +12,19 @@ export class PersonasService {
   constructor(protected http: HttpClient) { }
 
   getAll(){
-    return this.http.get(this.apiURL);
+    return this.http.get<Persona[]>(this.apiURL);
   }
   create(datos:Persona){
-    return this.http.post(this.apiURL, datos);
+    return this.http.post<Persona>(this.apiURL, datos);
   }
   get(id:number){
-    return this.http.get(this.apiURL + '/' + id);
+    return this.http.get<Persona>(this.apiURL + '/' + id);
   }
   edit(datos:Persona){
-    return this.http.put(this.apiURL + '/' + datos.id_Persona, datos);
+    return this.http.put<Persona>(this.apiURL + '/' + datos.id_Persona, datos);
   }
   delete(id:number){
-    return this.http.delete(this.apiURL + '/' + id);
+    return this.http.delete<Persona>(this.apiURL + '/' + id);
   }
 }
 /*

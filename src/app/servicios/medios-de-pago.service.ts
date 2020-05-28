@@ -12,19 +12,19 @@ export class MediosDePagoService {
   constructor(protected http: HttpClient) { }
 
   getAll(){
-    return this.http.get(this.apiURL);
+    return this.http.get<MedioDePago[]>(this.apiURL);
   }
   create(datos:MedioDePago){
-    return this.http.post(this.apiURL, datos);
+    return this.http.post<MedioDePago>(this.apiURL, datos);
   }
   get(id:number){
-    return this.http.get(this.apiURL + '/' + id);
+    return this.http.get<MedioDePago>(this.apiURL + '/' + id);
   }
   edit(datos:MedioDePago){
-    return this.http.put(this.apiURL + '/' + datos.id, datos);
+    return this.http.put<MedioDePago>(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
-    return this.http.delete(this.apiURL + '/' + id);
+    return this.http.delete<MedioDePago>(this.apiURL + '/' + id);
   }
 }
 /*
