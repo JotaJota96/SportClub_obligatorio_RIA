@@ -21,7 +21,7 @@ export class CategoriasService {
     return this.http.get(this.apiURL + '/' + id);
   }
   edit(datos:Categoria){
-    return this.http.put(this.apiURL + '/' + datos.id, datos);
+    return this.http.put(this.apiURL + '/' + datos.id_Categoria, datos);
   }
   delete(id:number){
     return this.http.delete(this.apiURL + '/' + id);

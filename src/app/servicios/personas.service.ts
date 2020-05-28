@@ -21,7 +21,7 @@ export class PersonasService {
     return this.http.get(this.apiURL + '/' + id);
   }
   edit(datos:Persona){
-    return this.http.put(this.apiURL + '/' + datos.id, datos);
+    return this.http.put(this.apiURL + '/' + datos.id_Persona, datos);
   }
   delete(id:number){
     return this.http.delete(this.apiURL + '/' + id);
