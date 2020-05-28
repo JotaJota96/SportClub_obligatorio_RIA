@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MedioDePago } from '../clases/medio-de-pago';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediosDePagoService {
 
-  private apiURL: string = 'http://159.65.222.132:802/api/MediosDePago';
+  private apiURL: string = environment.apiURL + '/MediosDePago';
 
   constructor(protected http: HttpClient) { }
 

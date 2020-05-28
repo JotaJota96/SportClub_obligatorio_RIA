@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Convenio } from '../clases/convenio';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConveniosService {
 
-  private apiURL: string = 'http://159.65.222.132:802/api/Convenios';
+  private apiURL: string = environment.apiURL + '/Convenios';
 
   constructor(protected http: HttpClient) { }
 

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Persona } from '../clases/persona';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonasService {
 
-  private apiURL: string = 'http://159.65.222.132:802/api/Personas';
+  private apiURL: string = environment.apiURL + '/Personas';
 
   constructor(protected http: HttpClient) { }
 

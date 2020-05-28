@@ -4,13 +4,14 @@ import { LoginDTO } from '../clases/login-dto';
 import { RegistroDTO } from '../clases/registro-dto';
 import { LoginResponseDTO } from '../clases/login-response-dto';
 import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  private apiURL: string = 'http://159.65.222.132:802/api/Account';
+  private apiURL: string = environment.apiURL + '/Account';
 
   constructor(protected http: HttpClient) { }
 

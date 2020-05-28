@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WeatherForecast } from '../clases/weather-forecast';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherForecastService {
 
-  private apiURL: string = 'http://159.65.222.132:802/WeatherForecast';
+  private apiURL: string = environment.apiURL + '/WeatherForecast';
 
   constructor(protected http: HttpClient) { }
 
