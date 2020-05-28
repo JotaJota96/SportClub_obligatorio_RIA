@@ -7,7 +7,7 @@ import { Persona } from '../clases/persona';
 })
 export class PersonasService {
 
-  private apiURL: string = "http://159.65.222.132:802/api/Personas";
+  private apiURL: string = 'http://159.65.222.132:802/api/Personas';
 
   constructor(protected http: HttpClient) { }
 

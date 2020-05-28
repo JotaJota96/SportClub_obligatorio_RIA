@@ -7,7 +7,7 @@ import { Categoria } from '../clases/categoria';
 })
 export class CategoriasService {
 
-  private apiURL: string = "http://159.65.222.132:802/api/Categorias";
+  private apiURL: string = 'http://159.65.222.132:802/api/Categorias';
 
   constructor(protected http: HttpClient) { }
 

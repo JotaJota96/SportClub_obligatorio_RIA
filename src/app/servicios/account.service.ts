@@ -8,12 +8,12 @@ import { RegistroDTO } from '../clases/registro-dto';
 })
 export class AccountService {
 
-  private apiURL: string = "http://159.65.222.132:802/api/Account​";
+  private apiURL: string = 'http://159.65.222.132:802/api/Account';
 
   constructor(protected http: HttpClient) { }
 
   login(datos:LoginDTO){
-    return this.http.post(this.apiURL+'/login', datos);
+    return this.http.post( this.apiURL + '/login', datos);
   }
 
   register(datos:RegistroDTO){
