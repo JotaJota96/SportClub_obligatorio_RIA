@@ -1,0 +1,10 @@
+.clr-footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: #c1c1c1;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 24px;
+  }

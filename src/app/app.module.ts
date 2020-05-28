@@ -16,10 +16,42 @@ import { PreciosService } from './servicios/precios.service';
 import { PrestadoresDeSaludService } from './servicios/prestadores-de-salud.service';
 import { WeatherForecastService } from './servicios/weather-forecast.service';
 import { InterceptorTokenService } from './interceptores/interceptor-token.service';
+import { HeaderComponent } from './headerYfooter/header/header.component';
+import { FooterComponent } from './headerYfooter/footer/footer.component';
+import { ActividadesComponent } from './actividades/actividades.component';
+import { HomeComponent } from './home/home.component';
+import { QuienesSomosComponent } from './quienes-somos/quienes-somos.component';
+import { LogInComponent } from './log-in/log-in.component';
+import { RegistrarseComponent } from './registrarse/registrarse.component';
+import { NuestrasActividadesComponent } from './nuestras-actividades/nuestras-actividades.component';
+import { ContactosComponent } from './contactos/contactos.component';
+import { AccountComponent } from './account/account.component';
+import { CategoriasComponent } from './categorias/categorias.component';
+import { MediosDePagoComponent } from './medios-de-pago/medios-de-pago.component';
+import { PersonasComponent } from './personas/personas.component';
+import { PreciosComponent } from './precios/precios.component';
+import { PrestadoresDeSaludComponent } from './prestadores-de-salud/prestadores-de-salud.component';
+import { ConveniosComponent } from './convenios/convenios.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    ActividadesComponent,
+    HomeComponent,
+    QuienesSomosComponent,
+    LogInComponent,
+    RegistrarseComponent,
+    NuestrasActividadesComponent,
+    ContactosComponent,
+    AccountComponent,
+    CategoriasComponent,
+    MediosDePagoComponent,
+    PersonasComponent,
+    PreciosComponent,
+    PrestadoresDeSaludComponent,
+    ConveniosComponent
   ],
   imports: [
     BrowserModule,
