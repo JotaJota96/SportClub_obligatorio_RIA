@@ -12,19 +12,19 @@ export class ActividadesService {
   constructor(protected http: HttpClient) { }
 
   getAll(){
-    return this.http.get(this.apiURL);
+    return this.http.get<Actividad[]>(this.apiURL);
   }
   create(datos:Actividad){
-    return this.http.post(this.apiURL, datos);
+    return this.http.post<Actividad>(this.apiURL, datos);
   }
   get(id:number){
-    return this.http.get(this.apiURL + '/' + id);
+    return this.http.get<Actividad>(this.apiURL + '/' + id);
   }
   edit(datos:Actividad){
-    return this.http.put(this.apiURL + '/' + datos.id, datos);
+    return this.http.put<Actividad>(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
-    return this.http.delete(this.apiURL + '/' + id);
+    return this.http.delete<Actividad>(this.apiURL + '/' + id);
   }
 }
 /*

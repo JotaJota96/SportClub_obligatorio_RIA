@@ -12,19 +12,19 @@ export class CategoriasService {
   constructor(protected http: HttpClient) { }
 
   getAll(){
-    return this.http.get(this.apiURL);
+    return this.http.get<Categoria[]>(this.apiURL);
   }
   create(datos:Categoria){
-    return this.http.post(this.apiURL, datos);
+    return this.http.post<Categoria>(this.apiURL, datos);
   }
   get(id:number){
-    return this.http.get(this.apiURL + '/' + id);
+    return this.http.get<Categoria>(this.apiURL + '/' + id);
   }
   edit(datos:Categoria){
-    return this.http.put(this.apiURL + '/' + datos.id_Categoria, datos);
+    return this.http.put<Categoria>(this.apiURL + '/' + datos.id_Categoria, datos);
   }
   delete(id:number){
-    return this.http.delete(this.apiURL + '/' + id);
+    return this.http.delete<Categoria>(this.apiURL + '/' + id);
   }
 }
 /*

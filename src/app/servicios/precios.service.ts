@@ -12,19 +12,19 @@ export class PreciosService {
   constructor(protected http: HttpClient) { }
 
   getAll(){
-    return this.http.get(this.apiURL);
+    return this.http.get<Precio[]>(this.apiURL);
   }
   create(datos:Precio){
-    return this.http.post(this.apiURL, datos);
+    return this.http.post<Precio>(this.apiURL, datos);
   }
   get(id:number){
-    return this.http.get(this.apiURL + '/' + id);
+    return this.http.get<Precio>(this.apiURL + '/' + id);
   }
   edit(datos:Precio){
-    return this.http.put(this.apiURL + '/' + datos.id_Precio, datos);
+    return this.http.put<Precio>(this.apiURL + '/' + datos.id_Precio, datos);
   }
   delete(id:number){
-    return this.http.delete(this.apiURL + '/' + id);
+    return this.http.delete<Precio>(this.apiURL + '/' + id);
   }
 }
 /*
