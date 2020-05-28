@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActividadesService } from './servicios/actividades.service';
+import { AccountService } from './servicios/account.service';
+import { LoginDTO } from './clases/login-dto';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { ActividadesService } from './servicios/actividades.service';
 export class AppComponent {
   title = 'SportClub';
 
-  constructor(protected actServ:ActividadesService){
+  constructor(protected acServ:AccountService){
 
   }
 
