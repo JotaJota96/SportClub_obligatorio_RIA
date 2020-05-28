@@ -7,7 +7,7 @@ import { Categoria } from '../clases/categoria';
 })
 export class CategoriasService {
 
-  private apiURL: string = "http://159.65.222.132:802/api/Categorias";
+  private apiURL: string = 'http://159.65.222.132:802/api/Categorias';
 
   constructor(protected http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class CategoriasService {
     return this.http.get(this.apiURL + '/' + id);
   }
   edit(datos:Categoria){
-    return this.http.put(this.apiURL + '/' + datos.id, datos);
+    return this.http.put(this.apiURL + '/' + datos.id_Categoria, datos);
   }
   delete(id:number){
     return this.http.delete(this.apiURL + '/' + id);

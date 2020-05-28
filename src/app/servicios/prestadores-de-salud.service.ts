@@ -7,7 +7,7 @@ import { PrestadorDeSalud } from '../clases/prestador-de-salud';
 })
 export class PrestadoresDeSaludService {
 
-  private apiURL: string = "http://159.65.222.132:802/api/PrestadoresDeSalud";
+  private apiURL: string = 'http://159.65.222.132:802/api/PrestadoresDeSalud';
 
   constructor(protected http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { WeatherForecast } from '../clases/weather-forecast';
 })
 export class WeatherForecastService {
 
-  private apiURL: string = "http://159.65.222.132:802/WeatherForecast";
+  private apiURL: string = 'http://159.65.222.132:802/WeatherForecast';
 
   constructor(protected http: HttpClient) { }
 

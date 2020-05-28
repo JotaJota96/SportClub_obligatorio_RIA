@@ -7,7 +7,7 @@ import { Persona } from '../clases/persona';
 })
 export class PersonasService {
 
-  private apiURL: string = "http://159.65.222.132:802/api/Personas";
+  private apiURL: string = 'http://159.65.222.132:802/api/Personas';
 
   constructor(protected http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class PersonasService {
     return this.http.get(this.apiURL + '/' + id);
   }
   edit(datos:Persona){
-    return this.http.put(this.apiURL + '/' + datos.id, datos);
+    return this.http.put(this.apiURL + '/' + datos.id_Persona, datos);
   }
   delete(id:number){
     return this.http.delete(this.apiURL + '/' + id);

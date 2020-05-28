@@ -7,7 +7,7 @@ import { MedioDePago } from '../clases/medio-de-pago';
 })
 export class MediosDePagoService {
 
-  private apiURL: string = "http://159.65.222.132:802/api/MediosDePago";
+  private apiURL: string = 'http://159.65.222.132:802/api/MediosDePago';
 
   constructor(protected http: HttpClient) { }
 
