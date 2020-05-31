@@ -1,32 +1,38 @@
 <div class="p0 m0 clr-row ">
-    <div class="clr-col-2"></div>
-    <div class="clr-col-8 ">
+    <div class="clr-col"></div>
+
+    <div class="clr-col-12 clr-col-md-10">
+
         <h3 class="titulo">Registrarse</h3>
-        
-        <div class="clr-row">
-            <div class="clr-col-4"></div>
-            <div class="clr-col-8">
-                <form class="clrForm">
-                    <div class="mt5 mb4">
-                        <span>Complete los campos</span>
-                        <clr-input-container>
-                            <label>Nickname</label>
-                            <input clrInput  type="text" id="nickname" required >
-                            <clr-control-error>Nickname es requerido</clr-control-error>
-                        </clr-input-container>
-                        
-                        <clr-input-container>
-                            <label>Password</label>
-                            <input  clrInput  type="password" id="password"  required>
-                            <clr-control-error>Password es requerido</clr-control-error>
-                        </clr-input-container>
-                    </div>
-        
-                    <button class="btn btn-primary" type="submit">Registrarme</button>
+         
+        <div class="clr-row mt4">
+            <div class="clr-col"></div>
+
+            <div class="cont_Form clr-col-10 clr-col-sm-6 clr-col-md-5 clr-col-lg-4">
+
+                <form clrForm class="miForm">
+
+                    <clr-input-container>
+                        <label >Email</label>
+                        <input clrInput type="email" name="email" id="email" required />
+                        <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label>Password</label>
+                        <input clrInput type="password" name="password" id="password" required />
+                        <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                    </clr-input-container>
+
+                    <button class="my2 btn btn-primary" type="submit">Registrarme</button>
+
                 </form>
+
             </div>
+            <div class="clr-col"></div>
         </div>
 
     </div>
-    <div class="clr-col-8"></div>
+    <div class="clr-col"></div>
+
 </div>
