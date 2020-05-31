@@ -1,0 +1,20 @@
+.noticiaCuerpo{
+    margin-bottom: 20px;
+}
+.noticiaTitulo{
+    padding: 8px;
+     background-color: rgb(43, 65, 90);
+}
+.noticiaTitulo p{
+    margin: 0; color: linen;
+    font-size: 18px ; 
+}
+.noticiaContenido{
+    padding: 10px;
+    background-color: rgb(203, 224, 255);
+} 
+.noticiaContenido  p{
+    margin: 0;
+}               
+
+                
