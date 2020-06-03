@@ -22,7 +22,7 @@ export class PreciosService {
     return this.http.get<Precio>(this.apiURL + '/' + id);
   }
   edit(datos:Precio){
-    return this.http.put<Precio>(this.apiURL + '/' + datos.id_Precio, datos);
+    return this.http.put<Precio>(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
     return this.http.delete<Precio>(this.apiURL + '/' + id);

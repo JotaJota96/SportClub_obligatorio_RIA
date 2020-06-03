@@ -22,7 +22,7 @@ export class CategoriasService {
     return this.http.get<Categoria>(this.apiURL + '/' + id);
   }
   edit(datos:Categoria){
-    return this.http.put<Categoria>(this.apiURL + '/' + datos.id_Categoria, datos);
+    return this.http.put<Categoria>(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
     return this.http.delete<Categoria>(this.apiURL + '/' + id);

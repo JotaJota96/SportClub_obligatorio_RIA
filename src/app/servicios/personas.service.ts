@@ -22,7 +22,7 @@ export class PersonasService {
     return this.http.get<Persona>(this.apiURL + '/' + id);
   }
   edit(datos:Persona){
-    return this.http.put<Persona>(this.apiURL + '/' + datos.id_Persona, datos);
+    return this.http.put<Persona>(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
     return this.http.delete<Persona>(this.apiURL + '/' + id);
