@@ -2,7 +2,7 @@ import {PrestadorDeSalud} from 'src/app/clases/prestador-de-salud';
 
 export class Persona {
 
-    public id_Persona: number;
+    public id: number;
     public primerNombre: string;
     public segundoNombre: string;
     public primerApellido: string;
@@ -15,12 +15,11 @@ export class Persona {
     public fechaVenceCarneSalud: string;
     public prestadorDeSalud: PrestadorDeSalud;
 
-    constructor(id_Persona: number, primerNombre: string, segundoNombre: string, 
+    constructor(id: number, primerNombre: string, segundoNombre: string, 
                 primerApellido: string, segundoApellido: string, fechaNacimiento: string, documento: string, 
                 tipoDocumento: string, telefono: string, direccion: string,
                 fechaVenceCarneSalud: string, prestadorDeSalud: PrestadorDeSalud) {
-
-        this.id_Persona = id_Persona;
+        this.id = id;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
