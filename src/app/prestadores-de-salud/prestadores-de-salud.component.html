@@ -48,7 +48,16 @@
           <clr-modal [(clrModalOpen)]="isModalVisible">
             <h3 class="modal-title" >{{titulo}} Prestador de Salud</h3>
             <div class="modal-body">
-
+              <!--******************* Formulario  *********************-->
+              <form [formGroup]="profileForm">
+                <p *ngIf="profileForm.valid">Si</p>
+                <p *ngIf="!profileForm.valid">NO</p>
+                First Name:<input type="text" formControlName="firstName">
+                Last Name:<input type="text" formControlName="lastName">
+                telefono: <input type="phone" formControlName="telefono">
+                <button type="submit" [disabled]="!profileForm.valid" (click)="ver()">Confirmar</button>
+              </form>
+              <!--*******************.............*********************-->
             </div>
 
             <div class="modal-footer">

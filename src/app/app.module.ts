@@ -32,6 +32,7 @@ import { PersonasComponent } from './personas/personas.component';
 import { PreciosComponent } from './precios/precios.component';
 import { PrestadoresDeSaludComponent } from './prestadores-de-salud/prestadores-de-salud.component';
 import { ConveniosComponent } from './convenios/convenios.component';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,9 @@ import { ConveniosComponent } from './convenios/convenios.component';
     AppRoutingModule,
     ClarityModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     AccountService,
