@@ -14,7 +14,6 @@ import { MediosDePagoService } from './servicios/medios-de-pago.service';
 import { PersonasService } from './servicios/personas.service';
 import { PreciosService } from './servicios/precios.service';
 import { PrestadoresDeSaludService } from './servicios/prestadores-de-salud.service';
-import { WeatherForecastService } from './servicios/weather-forecast.service';
 import { InterceptorTokenService } from './interceptores/interceptor-token.service';
 
 @NgModule({
@@ -37,7 +36,6 @@ import { InterceptorTokenService } from './interceptores/interceptor-token.servi
     PersonasService,
     PreciosService,
     PrestadoresDeSaludService,
-    WeatherForecastService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorTokenService,
