@@ -28,31 +28,38 @@
                 <td>Activo</td>
                 <td>
                   <div class="m1 btn-group btn-primary">
-                    <button class="btn btn-danger">Borrar</button>
-                    <button class="btn btn-primary">Editar</button>
-                  </div>
-                </td>
-              </tr>
-  
-              <tr>
-                <td>1</td>
-                <td>Golf</td>
-                <td>Activo</td>
-                <td>
-                  <div class="m1 btn-group btn-primary">
-                    <button class="btn btn-danger">Borrar</button>
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-danger" (click)="borrar()">Borrar</button>
+                    <button class="btn btn-primary" (click)="abrirModificar(1)">Modificar</button>
                   </div>
                 </td>
               </tr>
              <!--Fin de Datos de la tabla-->
+
             </tbody>
           </table>
         </div>
         <div class="clr-col"></div>
       </div>
       <div class="agregar clr-row">
-        <div class="clr-col-12"><button class="btn btn-success">Agregar</button></div>
+        <div class="clr-col-12">
+          <button class="btn btn-success" (click)="abrirAgregar()">Agregar</button>
+
+          <!--*******************************  MODAL  Agregar/modificar *******************************-->
+          <clr-modal [(clrModalOpen)]="isModalVisible">
+            <h3 class="modal-title" >{{titulo}} Prestador de Salud</h3>
+            <div class="modal-body">
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="cerrar()">Cancel</button>
+              <button type="button" class="btn btn-primary" (click)="confirmar()">Confirmar</button>
+            </div>
+            
+          </clr-modal>
+          <!--******************************************************************************-->
+          
+        </div>
       </div>
     </div>
     <div class="clr-col"></div>
