@@ -3,16 +3,18 @@
     margin: auto;
 }
 td{
-    padding: 0px; 
-    vertical-align: middle;
+    padding: 1px; 
+    vertical-align: 
+    middle; font-size: 20px;
 }
 th{ 
-    padding-right: 8px; 
-    padding-left: 8px;
-    vertical-align: middle;
+    vertical-align: 
+    middle; font-size: 20px;
 }
 
 .respTable{
     overflow-x: auto;
 }
+
+
 
