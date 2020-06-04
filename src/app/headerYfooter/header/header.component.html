@@ -3,7 +3,8 @@
     <a [routerLink]="['/']" class="nav-link nav-text">
         SportClub
      </a>
-    <a [routerLink]="['/administracion']" class="nav-link nav-text">
+    <a [routerLink]="['/administracion']" class="nav-link nav-text"
+        *ngIf="mostrarOpcionMenu()">
        Administracion
     </a>
     <a [routerLink]="['/nuestrasActividades']" class="nav-link nav-text">

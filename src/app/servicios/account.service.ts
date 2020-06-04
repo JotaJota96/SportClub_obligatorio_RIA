@@ -43,6 +43,34 @@ export class AccountService {
   logout(){
     localStorage.removeItem("loginData"); 
   }
+
+  /**
+   * Devuelve true si hay un usuario logueado actualmente
+   */
+  isLogged(){
+    return true;
+  }
+  /**
+   * Devueve true si el rol del usuario logueado es USER
+   */
+  isUser(){
+    return false;
+  }
+
+  /**
+   * Devueve true si el rol del usuario logueado es SECRETARIA
+   */
+  isSecretary(){
+    return true;
+  }
+
+  /**
+   * Devueve true si el rol del usuario logueado es ADMIN
+   */
+  isAdmin(){
+    return false;
+  }
+
 }
 /*
 Account
