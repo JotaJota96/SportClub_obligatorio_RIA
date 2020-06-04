@@ -2,6 +2,7 @@ import { Persona } from './persona';
 import { Convenio } from './convenio';
 import { Categoria } from './categoria';
 import { MedioDePago } from './medio-de-pago';
+import { ContratoDTO } from './contrato-dto';
 
 export class Contrato {
     id:number;
@@ -26,6 +27,10 @@ export class Contrato {
         this.categoria = categoria;
         this.medioDePago = medioDePago;
         this.activo = activo;
+    }
+
+    getDTO() : ContratoDTO {
+        return new ContratoDTO(this.id, this.usuarioGenero, this.fechaComienzo, this.socio.id, this.convenio.id, this.categoria.id, this.medioDePago.id, this.activo);
     }
 
 }

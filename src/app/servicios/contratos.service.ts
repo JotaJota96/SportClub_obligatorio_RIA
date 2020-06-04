@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Contrato } from '../clases/contrato';
+import { ContratoDTO } from '../clases/contrato-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,13 @@ export class ContratosService {
   getAll(){
     return this.http.get<Contrato[]>(this.apiURL);
   }
-  create(datos:Contrato){
+  create(datos:ContratoDTO){
     return this.http.post<Contrato>(this.apiURL, datos);
   }
   get(id:number){
     return this.http.get<Contrato>(this.apiURL + '/' + id);
   }
-  edit(datos:Contrato){
+  edit(datos:ContratoDTO){
     return this.http.put<Contrato>(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
