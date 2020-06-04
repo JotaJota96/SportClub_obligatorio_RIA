@@ -10,21 +10,21 @@
 
             <div class="cont_Form clr-col-10 clr-col-sm-6 clr-col-md-5 clr-col-lg-4">
 
-                <form clrForm class="miForm">
+                <form [formGroup]="loginForm" clrForm class="miForm">
 
                     <clr-input-container>
                         <label >Email</label>
-                        <input clrInput type="email" name="email" id="email" required />
+                        <input clrInput type="email" formControlName="email"  name="email" id="email" required />
                         <clr-control-error>We need your first name for legal compliance</clr-control-error>
                     </clr-input-container>
 
                     <clr-input-container>
                         <label>Password</label>
-                        <input clrInput type="password" name="password" id="password" required />
+                        <input clrInput type="password"formControlName="password"  name="password" id="password" required />
                         <clr-control-error>We need your first name for legal compliance</clr-control-error>
                     </clr-input-container>
 
-                    <button class="my2 btn btn-primary" type="submit">Log in</button>
+                    <button class="my2 btn btn-primary" type="submit" [disabled]="!loginForm.valid" (click)="login()">Log in</button>
 
                 </form>
 
