@@ -1,94 +1,31 @@
-<header class="header-6">
-    <div class="branding">
-        <a [routerLink]="['/']" class="nav-link">
-            <clr-icon shape="home"></clr-icon>
-            <span class="title">SportClub </span>
-        </a>
-    </div>
+<div class="header-nav" [clr-nav-level]="1">
+
+    <a [routerLink]="['/']" class="nav-link nav-text">
+        SportClub
+     </a>
+    <a [routerLink]="['/administracion']" class="nav-link nav-text">
+       Administracion
+    </a>
+    <a [routerLink]="['/nuestrasActividades']" class="nav-link nav-text">
+        Nuestras Actividades
+    </a>
+    <a [routerLink]="['/contactos']" class="nav-link nav-text">
+        Contactos
+    </a>
+    <a [routerLink]="['/quienesSomos']" class="nav-link nav-text">
+        Quienes somos
+    </a>
+    <a [routerLink]="['/registrarse']" class="nav-link nav-text">
+        Registrarse
+    </a>
+    <a [routerLink]="['/logIn']" class="nav-link nav-text">
+        Log in
+    </a>
+</div>
 
 
-    <div class="header-actions" >
-        <clr-dropdown [clrCloseMenuOnItemClick]="false">
-            <button clrDropdownTrigger>
-                <clr-icon shape="administrator" size="30"></clr-icon>
-            </button>
-            <clr-dropdown-menu *clrIfOpen>
-                <div clrDropdownItem>
-                    <a [routerLink]="['/account']" class=" nav-text">
-                        Administrar Roles
-                    </a>
-                </div>
-                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-                
-                <div clrDropdownItem>
-                    <a [routerLink]="['/prestadoresDeSalud']" class=" nav-text">
-                        Prestadores de Salud
-                    </a>
-                </div>
-                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-
-                <div clrDropdownItem>
-                    <a [routerLink]="['/precios']" class=" nav-text">
-                        Precios
-                    </a>
-                </div>
-                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-
-                <div clrDropdownItem>
-                    <a [routerLink]="['/personas']" class=" nav-text">
-                        Personas
-                    </a>
-                </div>
-                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-
-                <div clrDropdownItem>
-                    <a [routerLink]="['/mediosDePago']" class=" nav-text">
-                        Medios de Pago
-                    </a>
-                </div>
-                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-
-                <div clrDropdownItem>
-                    <a [routerLink]="['/convenios']" class=" nav-text">
-                        Convenios
-                    </a>
-                </div>
-                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-
-                <div clrDropdownItem>
-                    <a [routerLink]="['/categorias']" class=" nav-text">
-                        Categorias
-                    </a>
-                </div>
-                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-
-                <div clrDropdownItem>
-                    <a [routerLink]="['/actividadesa']" class=" nav-text">
-                        Actividadesa
-                    </a>
-                </div>
-
-            </clr-dropdown-menu>
-        </clr-dropdown>
-    </div>
 
 
-    <div class="header-actions">
 
-        <a [routerLink]="['/nuestrasActividades']" class="nav-link nav-text">
-            Nuestras Actividades
-        </a>
-        <a [routerLink]="['/contactos']" class="nav-link nav-text">
-            Contactos
-        </a>
-        <a [routerLink]="['/quienesSomos']" class="nav-link nav-text">
-            Quienes somos
-        </a>
-        <a [routerLink]="['/registrarse']" class="nav-link nav-text">
-            Registrarse
-        </a>
-        <a [routerLink]="['/logIn']" class="nav-link nav-text">
-            Log in
-        </a>
-    </div>
-</header>
+
+    

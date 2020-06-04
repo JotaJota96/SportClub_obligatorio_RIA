@@ -14,7 +14,7 @@ import { MediosDePagoComponent } from './medios-de-pago/medios-de-pago.component
 import { PersonasComponent } from './personas/personas.component';
 import { PreciosComponent } from './precios/precios.component';
 import { PrestadoresDeSaludComponent } from './prestadores-de-salud/prestadores-de-salud.component';
-
+import { AdministracionComponent } from './administracion/administracion.component';
 
 const routes: Routes = [
   {
@@ -72,6 +72,10 @@ const routes: Routes = [
   {
     path:'prestadoresDeSalud',
     component:PrestadoresDeSaludComponent
+  },
+  {
+    path:'administracion',
+    component:AdministracionComponent
   }
 ];
 

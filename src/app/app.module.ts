@@ -33,6 +33,7 @@ import { PreciosComponent } from './precios/precios.component';
 import { PrestadoresDeSaludComponent } from './prestadores-de-salud/prestadores-de-salud.component';
 import { ConveniosComponent } from './convenios/convenios.component';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { AdministracionComponent } from './administracion/administracion.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
     PersonasComponent,
     PreciosComponent,
     PrestadoresDeSaludComponent,
-    ConveniosComponent
+    ConveniosComponent,
+    AdministracionComponent
   ],
   imports: [
     BrowserModule,
