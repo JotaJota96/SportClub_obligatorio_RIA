@@ -16,4 +16,12 @@ export class HeaderComponent implements OnInit {
   mostrarOpcionMenu():boolean{
     return this.accServ.isLogged() && (this.accServ.isSecretary() || this.accServ.isAdmin());
   }
+
+  estoyLogeado():boolean{
+    return this.accServ.isLogged(); 
+  }
+
+  cerrarSesion():void{
+    this.accServ.logout(); 
+  }
 }

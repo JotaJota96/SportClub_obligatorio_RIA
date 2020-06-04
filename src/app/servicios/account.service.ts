@@ -48,7 +48,12 @@ export class AccountService {
    * Devuelve true si hay un usuario logueado actualmente
    */
   isLogged(){
-    return true;
+    let loginData:LoginResponseDTO = JSON.parse(localStorage.getItem("loginData"));
+    if (loginData != null){
+      return true;
+    }else{
+      return false;
+    }
   }
   /**
    * Devueve true si el rol del usuario logueado es USER
