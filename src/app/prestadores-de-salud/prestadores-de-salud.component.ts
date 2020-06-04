@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PrestadorDeSalud } from '../clases/prestador-de-salud';
 
 @Component({
   selector: 'app-prestadores-de-salud',
@@ -14,32 +15,24 @@ export class PrestadoresDeSaludComponent implements OnInit {
   titulo:string ="";
 
   public profileForm: FormGroup;
+
   constructor() { 
   }
+
   ngOnInit(): void {
     this.profileForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.minLength(5),Validators.maxLength(50) ] ),
-      lastName: new FormControl('', [ Validators.required ,Validators.minLength(5),]),
-      telefono: new FormControl('', [ Validators.required ,Validators.minLength(5),]),
+      nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
+      activo: new FormControl(false)
     });
-  }
-  ver(){
-    console.log("Nombre" + this.profileForm.controls['firstName'].value +
-    ', Apellido: ' + this.profileForm.controls['lastName'].value +
-    ', Telefono' + this.profileForm.controls['telefono'].value
-    )
-  }
-
-
-  deleteOrder() {
-    console.log("deleteado---------------------");
   }
 
   cerrar(){
+    this.vaciarCampos();
     this.isModalVisible = false;
   }
 
   abrirModificar(indice:number){ //indice en el array del elemento que se quiere modificar
+    this.vaciarCampos();
     this.titulo="Modificar";
     //carga los datos correspondientes a esa fila
     this.accionAgregar = false;
@@ -47,17 +40,19 @@ export class PrestadoresDeSaludComponent implements OnInit {
   }
 
   abrirAgregar(){
-    this.titulo="Agregar";
-    //muestra el modal
-    this.accionAgregar = true;
-    this.isModalVisible = true;
+    this.vaciarCampos();
+    this.titulo="Agregar";//determina el titulo del modal
+    this.accionAgregar = true;//determina que el modal es de agregar
+    this.isModalVisible = true;//abre el modal
   }
 
   borrar(){
+    this.vaciarCampos();
     //borra la fila
   }
 
   confirmar(){
+    this.vaciarCampos();
     //borra la fila
     if(this.accionAgregar){
       //agregar
@@ -67,4 +62,8 @@ export class PrestadoresDeSaludComponent implements OnInit {
     this.cerrar();//cierra el modal
   }
 
+  vaciarCampos(){
+    this.profileForm.controls['nombre'].setValue("");
+    this.profileForm.controls['activo'].setValue(false);
+  }
 }
