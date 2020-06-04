@@ -30,8 +30,8 @@
                 <td>Activo</td>
                 <td>
                   <div class="m1 btn-group btn-primary">
-                    <button class="btn btn-danger">Borrar</button>
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-danger" (click)="borrar()">Borrar</button>
+                    <button class="btn btn-primary" (click)="abrirModificar(1)">Editar</button>
                   </div>
                 </td>
               </tr>
@@ -43,8 +43,42 @@
         <div class="clr-col"></div>
       </div>
       <div class="agregar clr-row">
-        <div class="clr-col-12"><button class="btn btn-success">Agregar</button></div>
+        <div class="clr-col-12"><button class="btn btn-success" (click)="abrirAgregar()">Agregar</button></div>
       </div>
     </div>
     <div class="clr-col"></div>
   </div>
+
+  <!--*******************************  MODAL  Agregar/modificar *******************************-->
+  <clr-modal [(clrModalOpen)]="isModalVisible">
+    <h3 class="modal-title" >{{titulo}} Prestador de Salud</h3>
+    <div class="modal-body">
+      <!--******************* Formulario  *********************-->
+      <form [formGroup]="profileForm" clrForm >
+
+        <clr-input-container>
+          <label >Valor</label>
+          <input clrInput type="number" formControlName="valor" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label >Fecha de vigencia</label>
+          <input clrInput type="date" formControlName="fechaDeVigencia" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label >Categoria</label>
+          <input clrInput type="text" formControlName="categoria" >
+        </clr-input-container>
+
+      </form>
+      <!--*******************.............*********************-->
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="cerrar()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="confirmar()" [disabled]="!profileForm.valid">Confirmar</button>
+    </div>
+    
+  </clr-modal>
+  <!--******************************************************************************-->

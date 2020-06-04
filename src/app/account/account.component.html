@@ -1,9 +1,45 @@
-<div class="p0 m0 clr-row">
-    <div class="clr-col-2"></div>
-
-    <div class="clr-col-8">
-        <h3 class="titulo">Acount</h3>
+<div class="p0 m0 clr-row ">
+    <div class="clr-col"></div>
+    <div class="clr-col-12 clr-col-md-10">
+        <h3 class="titulo">Administrar Roles</h3>
+        <div class="clr-row mt4">
+            <div class="clr-col"></div>
+                <div class="cont_Form clr-col-10 clr-col-sm-6 clr-col-md-5 clr-col-lg-4">
+                    
+                    <form clrForm class="miForm">
+                        <div class="login-group">
+                            <clr-input-container>
+                                <label >Email</label>
+                                <input clrInput type="email" name="email" id="email" required />
+                                <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                            </clr-input-container>
+                            <br>
+                            <clr-select-container>
+                                <label >Rol</label>
+                                <select clrSelect name="type">
+                                    <option value="local">USER</option>
+                                    <option value="admin">ADMIN</option>
+                                    <option value="admin">SECRETARIA</option>
+                                </select>
+                            </clr-select-container>
+                            <br>
+                            <button class=" btn btn-primary" type="submit">Cambiar</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            <div class="clr-col"></div>
+        </div>
     </div>
-    
-    <div class="clr-col-2"></div>
+    <div class="clr-col"></div>
 </div>
+
+
+<!--
+        input email 
+        desplegable con roles [
+            "USER",
+            "ADMIN",
+            "SECRETARIA"
+        ]
+        -->
