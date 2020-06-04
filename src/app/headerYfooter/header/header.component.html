@@ -13,7 +13,13 @@
                 <clr-icon shape="administrator" size="30"></clr-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen>
-
+                <div clrDropdownItem>
+                    <a [routerLink]="['/account']" class=" nav-text">
+                        Administrar Roles
+                    </a>
+                </div>
+                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
+                
                 <div clrDropdownItem>
                     <a [routerLink]="['/prestadoresDeSalud']" class=" nav-text">
                         Prestadores de Salud
@@ -52,13 +58,6 @@
                 <div clrDropdownItem>
                     <a [routerLink]="['/categorias']" class=" nav-text">
                         Categorias
-                    </a>
-                </div>
-                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-
-                <div clrDropdownItem>
-                    <a [routerLink]="['/account']" class=" nav-text">
-                        Account
                     </a>
                 </div>
                 <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
