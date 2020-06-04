@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Persona } from '../clases/persona';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonasService {
 
-  private apiURL: string = 'http://159.65.222.132:802/api/Personas';
+  private apiURL: string = environment.apiURL + '/Personas';
 
   constructor(protected http: HttpClient) { }
 
@@ -21,7 +22,7 @@ export class PersonasService {
     return this.http.get<Persona>(this.apiURL + '/' + id);
   }
   edit(datos:Persona){
-    return this.http.put<Persona>(this.apiURL + '/' + datos.id_Persona, datos);
+    return this.http.put<Persona>(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
     return this.http.delete<Persona>(this.apiURL + '/' + id);

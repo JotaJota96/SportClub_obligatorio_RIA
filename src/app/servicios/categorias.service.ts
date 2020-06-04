@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Categoria } from '../clases/categoria';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriasService {
 
-  private apiURL: string = 'http://159.65.222.132:802/api/Categorias';
+  private apiURL: string = environment.apiURL + '/Categorias';
 
   constructor(protected http: HttpClient) { }
 
@@ -21,7 +22,7 @@ export class CategoriasService {
     return this.http.get<Categoria>(this.apiURL + '/' + id);
   }
   edit(datos:Categoria){
-    return this.http.put<Categoria>(this.apiURL + '/' + datos.id_Categoria, datos);
+    return this.http.put<Categoria>(this.apiURL + '/' + datos.id, datos);
   }
   delete(id:number){
     return this.http.delete<Categoria>(this.apiURL + '/' + id);

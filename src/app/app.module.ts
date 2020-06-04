@@ -14,7 +14,6 @@ import { MediosDePagoService } from './servicios/medios-de-pago.service';
 import { PersonasService } from './servicios/personas.service';
 import { PreciosService } from './servicios/precios.service';
 import { PrestadoresDeSaludService } from './servicios/prestadores-de-salud.service';
-import { WeatherForecastService } from './servicios/weather-forecast.service';
 import { InterceptorTokenService } from './interceptores/interceptor-token.service';
 import { HeaderComponent } from './headerYfooter/header/header.component';
 import { FooterComponent } from './headerYfooter/footer/footer.component';
@@ -74,7 +73,6 @@ import { AdministracionComponent } from './administracion/administracion.compone
     PersonasService,
     PreciosService,
     PrestadoresDeSaludService,
-    WeatherForecastService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorTokenService,

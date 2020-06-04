@@ -6,7 +6,6 @@ export class Convenio{
 	public activo: boolean;
  
 	constructor(id:number, nombre:string, porcentajeDescuento:number, activo:boolean){
-
 		this.id=id;
 		this.nombre=nombre;
 		this.porcentajeDescuento=porcentajeDescuento;
