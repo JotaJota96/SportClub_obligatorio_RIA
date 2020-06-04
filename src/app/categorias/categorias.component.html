@@ -1,0 +1,86 @@
+<div class="p0 m0 clr-row ">
+    <div class="clr-col"></div>
+  
+    <div class="clr-col-12 clr-col-md-10">
+  
+      <h3 class="titulo">Categorias</h3>
+  
+      <div class="clr-row mt4">
+        <div class="clr-col"></div>
+  
+        <div class="cont_Form clr-col-12 ">
+  
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID_Categoria</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Precios</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+  
+              <!--Datos de la tabla-->
+              <tr>
+                <td>1</td>
+                <td>Golf</td>
+                <td>Activo</td>
+                <td>45</td>
+                <td>
+                  <div class="m1 btn-group btn-primary">
+                    <button class="btn btn-danger" (click)="borrar()">Borrar</button>
+                    <button class="btn btn-primary" (click)="abrirModificar(1)">Editar</button>
+                  </div>
+                </td>
+              </tr>
+  
+             <!--Fin de Datos de la tabla-->
+            </tbody>
+          </table>
+        </div>
+        <div class="clr-col"></div>
+      </div>
+      <div class="agregar clr-row">
+        <div class="clr-col-12"><button class="btn btn-success" (click)="abrirAgregar()">Agregar</button></div>
+      </div>
+    </div>
+    <div class="clr-col"></div>
+  </div>
+
+  <!--*******************************  MODAL  Agregar/modificar *******************************-->
+  <clr-modal [(clrModalOpen)]="isModalVisible">
+    <h3 class="modal-title" >{{titulo}} Categoria</h3>
+    <div class="modal-body">
+      <!--******************* Formulario  *********************-->
+      <form [formGroup]="profileForm" clrForm >
+
+        <clr-input-container>
+          <label >Nombre</label>
+          <input clrInput type="text" formControlName="nombre" >
+        </clr-input-container>
+
+        <clr-checkbox-container>
+          <clr-checkbox-wrapper>
+            <input type="checkbox" clrCheckbox formControlName="activo">
+            <label>Actvio</label>
+          </clr-checkbox-wrapper>
+        </clr-checkbox-container>
+
+        <clr-input-container>
+          <label >Precio</label>
+          <input clrInput type="number" formControlName="precio" >
+        </clr-input-container>
+        
+      </form>
+      <!--*******************.............*********************-->
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="cerrar()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="confirmar()" [disabled]="!profileForm.valid">Confirmar</button>
+    </div>
+    
+  </clr-modal>
+  <!--******************************************************************************-->

@@ -1,0 +1,18 @@
+p{
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.misLinks{
+    text-align: center;
+
+    border: solid 2px;
+    border-color:rgb(43, 65, 90);
+    border-radius: 5px;
+
+    background-color: rgba(230, 230, 230, 0.836);
+
+}
+a{
+    color: rgb(18, 39, 59);
+}

@@ -1,0 +1,138 @@
+<div class="p0 m0 clr-row ">
+    <div class="clr-col"></div>
+  
+    <div class="clr-col-12 clr-col-md-10">
+  
+      <h3 class="titulo">Personas</h3>
+  
+      <div class="clr-row mt4">
+        <div class="clr-col"></div>
+  
+        <div class="respTable  clr-col-12">
+  
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID_Persona</th>
+                <th>PrimerNombre</th>
+                <th>SegundoNombre</th>
+                <th>PrimerApellido</th>
+                <th>SegundoApellido</th>
+                <th>FechaNacimiento</th>
+                <th>Documento</th>
+                <th>TipoDocumento</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>FechaVenceCarneSalud</th>
+                <th>PrestadorDeSalud</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--Datos de la tabla-->
+              <tr>
+                <td>1</td>
+                <td>Carlos</td>
+                <td>Juan</td>
+                <td>Alvarez</td>
+                <td>Balbiani</td>
+                <td>1995-05-21</td>
+                <td>CI</td>
+                <td>544898746</td>
+                <td>sanjo 234</td>
+                <td>45/85</td>
+                <td>AMSJ</td>
+                <td>
+                  <div class="m1 btn-group btn-primary">
+                    <button class="btn btn-danger" (click)="borrar()">Borrar</button>
+                    <button class="btn btn-primary" (click)="abrirModificar(1)">Editar</button>
+                  </div>
+                </td>
+              </tr>
+  
+             <!--Fin de Datos de la tabla-->
+            </tbody>
+          </table>
+        </div>
+        <div class="clr-col"></div>
+      </div>
+      <div class="agregar clr-row">
+        <div class="clr-col-12"><button class="btn btn-success" (click)="abrirAgregar()">Agregar</button></div>
+      </div>
+    </div>
+    <div class="clr-col"></div>
+  </div>
+
+   <!--*******************************  MODAL  Agregar/modificar *******************************-->
+   <clr-modal [(clrModalOpen)]="isModalVisible">
+    <h3 class="modal-title" >{{titulo}} Persona</h3>
+    <div class="modal-body">
+      <!--******************* Formulario  *********************-->
+      <form [formGroup]="profileForm" clrForm >
+
+        <clr-input-container>
+          <label >Primer Nombre</label>
+          <input clrInput type="text" formControlName="primerNombre" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Segundo Nombre</label>
+          <input clrInput type="text" formControlName="segundoNombre" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label >Primer Apellido</label>
+          <input clrInput type="text" formControlName="primerApellido" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label >Segundo Apellido</label>
+          <input clrInput type="text" formControlName="segundoApellido" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Fecha de Nacimiento</label>
+          <input clrInput type="date" formControlName="fechaNacimiento" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Documento</label>
+          <input clrInput type="texto" formControlName="documento" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Tipo de Documento</label>
+          <input clrInput type="text" formControlName="tipoDocumento" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Telefono</label>
+          <input clrInput type="number" formControlName="telefono" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Direccion</label>
+          <input clrInput type="text" formControlName="direccion" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Fecha de Vence de CarneSalud</label>
+          <input clrInput type="date" formControlName="fechaVenceCarneSalud" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Prestador De Salud</label>
+          <input clrInput type="text" formControlName="prestadorDeSalud" >
+        </clr-input-container>
+
+      </form>
+      <!--*******************.............*********************-->
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="cerrar()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="confirmar()" [disabled]="!profileForm.valid">Confirmar</button>
+    </div>
+    
+  </clr-modal>
+  <!--******************************************************************************-->

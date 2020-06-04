@@ -1,1 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
+.titulo{
+    font-size: 30px;
+}
+.p0{
+    padding: 0px;
+}
+.m0{
+    margin: 0px;
+}
+.m1{
+    margin: 5px;
+}
+.mt5{
+    margin-top: 60px;
+}
+.mb5{
+    margin-bottom: 60px;
+}
+.mb4{
+    margin-bottom: 30px;
+}
+.mt3{
+    margin-top: 15px;
+}
+.mt4{
+    margin-top: 30px;
+}
+
+.Cuerpo{
+    margin-bottom: 20px;
+}
+.gTitulo{
+    padding: 8px;
+     background-color: rgba(43, 65, 90, 0.856);
+}
+.gTitulo p{
+    margin: 0; color: linen;
+    font-size: 18px ; 
+}
+.Contenido{
+    padding: 10px;
+    background-color: rgba(203, 224, 255, 0.836);
+} 
+.Contenido  p {
+    margin: 0;
+}  
+
+.Contenido  h3 {
+    margin: 3px;
+} 
+.imagene{
+    width: 100%;
+    border: solid 2px;
+    border-color:rgb(43, 65, 90);
+    border-radius: 5px;
+}
+
+.my2{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.imgBack {
+    background-image: url(/assets/images/imgB.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+    
+  }
+

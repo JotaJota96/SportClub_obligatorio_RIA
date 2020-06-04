@@ -1,0 +1,84 @@
+<div class="p0 m0 clr-row ">
+    <div class="clr-col"></div>
+  
+    <div class="clr-col-12 clr-col-md-10">
+  
+      <h3 class="titulo">Precios</h3>
+  
+      <div class="clr-row mt4">
+        <div class="clr-col"></div>
+  
+        <div class="cont_Form clr-col-12 ">
+  
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID_Precio</th>
+                <th>Valor</th>
+                <th>FechaVigencia</th>
+                <th>Categoria</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+  
+              <!--Datos de la tabla-->
+              <tr>
+                <td>1</td>
+                <td>45</td>
+                <td>1243-23-02</td>
+                <td>Activo</td>
+                <td>
+                  <div class="m1 btn-group btn-primary">
+                    <button class="btn btn-danger" (click)="borrar()">Borrar</button>
+                    <button class="btn btn-primary" (click)="abrirModificar(1)">Editar</button>
+                  </div>
+                </td>
+              </tr>
+  
+             <!--Fin de Datos de la tabla-->
+            </tbody>
+          </table>
+        </div>
+        <div class="clr-col"></div>
+      </div>
+      <div class="agregar clr-row">
+        <div class="clr-col-12"><button class="btn btn-success" (click)="abrirAgregar()">Agregar</button></div>
+      </div>
+    </div>
+    <div class="clr-col"></div>
+  </div>
+
+  <!--*******************************  MODAL  Agregar/modificar *******************************-->
+  <clr-modal [(clrModalOpen)]="isModalVisible">
+    <h3 class="modal-title" >{{titulo}} Precio</h3>
+    <div class="modal-body">
+      <!--******************* Formulario  *********************-->
+      <form [formGroup]="profileForm" clrForm >
+
+        <clr-input-container>
+          <label >Valor</label>
+          <input clrInput type="number" formControlName="valor" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label >Fecha de vigencia</label>
+          <input clrInput type="date" formControlName="fechaDeVigencia" >
+        </clr-input-container>
+
+        <clr-input-container>
+          <label >Categoria</label>
+          <input clrInput type="text" formControlName="categoria" >
+        </clr-input-container>
+
+      </form>
+      <!--*******************.............*********************-->
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="cerrar()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="confirmar()" [disabled]="!profileForm.valid">Confirmar</button>
+    </div>
+    
+  </clr-modal>
+  <!--******************************************************************************-->
