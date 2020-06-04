@@ -48,7 +48,7 @@ export class AccountService {
    * Devuelve true si hay un usuario logueado actualmente
    */
   isLogged(){
-    return false;
+    return true;
   }
   /**
    * Devueve true si el rol del usuario logueado es USER
@@ -61,7 +61,7 @@ export class AccountService {
    * Devueve true si el rol del usuario logueado es SECRETARIA
    */
   isSecretary(){
-    return false;
+    return true;
   }
 
   /**
