@@ -9,6 +9,10 @@ import { NoticiasService } from '../servicios/noticias.service';
 })
 export class HomeComponent implements OnInit {
   // noticias que se van a mostrar
+  isModalVisible:boolean = false; //se muestra o no el modal
+
+  noticiaActual:Noticia;
+
   noticias:Noticia[];
 
   constructor(protected notiServ:NoticiasService) {
@@ -21,5 +25,12 @@ export class HomeComponent implements OnInit {
         this.noticias = lista;
       }
     );
+    this.noticiaActual = new Noticia(0, "","","","");
   }
+
+  abrirModal(indice:number){
+    this.noticiaActual = this.noticias[indice];
+    this.isModalVisible = true;//abre el modal
+  }
+
 }
