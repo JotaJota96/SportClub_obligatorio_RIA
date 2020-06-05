@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PrestadorDeSalud } from '../clases/prestador-de-salud';
+import { PrestadoresDeSaludService } from '../servicios/prestadores-de-salud.service';
 
 @Component({
   selector: 'app-prestadores-de-salud',
@@ -11,29 +13,42 @@ export class PrestadoresDeSaludComponent implements OnInit {
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
 
+  listaPrestadoresDeSalud:PrestadorDeSalud[];
+
   titulo:string ="";
 
   public profileForm: FormGroup;
 
-  constructor() { 
+  constructor(protected pdsService:PrestadoresDeSaludService) { 
   }
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
-      activo: new FormControl(false)
+      activo: new FormControl(false),
+      id: new FormControl('')
     });
+    this.cargarLista();
+  }
+
+  cargarLista(){
+    this.pdsService.getAll().subscribe(
+      (pds)=>{
+        this.listaPrestadoresDeSalud=pds;
+      }
+    );
   }
 
   cerrar(){
-    this.vaciarCampos();
     this.isModalVisible = false;
+    this.vaciarCampos();
   }
 
   abrirModificar(indice:number){ //indice en el array del elemento que se quiere modificar
-    this.vaciarCampos();
     this.titulo="Modificar";
-    //carga los datos correspondientes a esa fila
+    this.profileForm.controls['nombre'].setValue(this.listaPrestadoresDeSalud[indice].nombre);
+    this.profileForm.controls['activo'].setValue(this.listaPrestadoresDeSalud[indice].activo);
+    this.profileForm.controls['id'].setValue(this.listaPrestadoresDeSalud[indice].id);
     this.accionAgregar = false;
     this.isModalVisible = true;//muestra el modal.
   }
@@ -45,18 +60,26 @@ export class PrestadoresDeSaludComponent implements OnInit {
     this.isModalVisible = true;//abre el modal
   }
 
-  borrar(){
-    this.vaciarCampos();
-    //borra la fila
+  borrar(indice:number){
+    let id = this.listaPrestadoresDeSalud[indice].id;
+    this.pdsService.delete(id).subscribe(
+      (retorno)=>{
+        //hacer algo si login es correcto
+        alert("Se ha eliminado exitosamente");
+        this.cargarLista();
+      },
+      (error)=>{
+        alert("Ha ocurrido un error durante la eliminacion");
+      }
+    );
   }
 
   confirmar(){
-    this.vaciarCampos();
     //borra la fila
     if(this.accionAgregar){
-      //agregar
+      this.agregar();
     }else{
-      //modificar
+      this.modificar();
     }
     this.cerrar();//cierra el modal
   }
@@ -64,5 +87,40 @@ export class PrestadoresDeSaludComponent implements OnInit {
   vaciarCampos(){
     this.profileForm.controls['nombre'].setValue("");
     this.profileForm.controls['activo'].setValue(false);
+    this.profileForm.controls['id'].setValue("");
+  }
+
+  agregar(){
+    let nombre = this.profileForm.controls['nombre'].value;
+    let estado = this.profileForm.controls['activo'].value;
+
+    let datos = new PrestadorDeSalud(0, nombre, estado);
+    this.pdsService.create(datos).subscribe(
+      (retorno)=>{
+        //hacer algo si login es correcto
+        alert("Se ha agregado exitosamente");
+        this.cargarLista();
+      },
+      (error)=>{
+        alert("Ha ocurrido un error durante el agregado");
+      }
+    );
+  }
+
+  modificar(){
+    let nombre = this.profileForm.controls['nombre'].value;
+    let estado = this.profileForm.controls['activo'].value;
+    let id = this.profileForm.controls['id'].value;
+    let datos = new PrestadorDeSalud(id, nombre, estado);
+    this.pdsService.edit(datos).subscribe(
+      (retorno)=>{
+        //hacer algo si login es correcto
+        alert("Se ha modificado exitosamente");
+        this.cargarLista();
+      },
+      (error)=>{
+        alert("Ha ocurrido un error durante la modificacion");
+      }
+    );
   }
 }
