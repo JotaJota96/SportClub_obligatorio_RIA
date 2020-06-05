@@ -15,6 +15,7 @@ import { PersonasComponent } from './personas/personas.component';
 import { PreciosComponent } from './precios/precios.component';
 import { PrestadoresDeSaludComponent } from './prestadores-de-salud/prestadores-de-salud.component';
 import { AdministracionComponent } from './administracion/administracion.component';
+import { NoticiasComponent } from './noticias/noticias.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
   {
     path:'prestadoresDeSalud',
     component:PrestadoresDeSaludComponent
+  },
+  {
+    path:'noticias',
+    component:NoticiasComponent
   },
   {
     path:'administracion',
