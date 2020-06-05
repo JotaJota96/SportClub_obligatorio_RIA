@@ -35,6 +35,7 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AdministracionComponent } from './administracion/administracion.component';
 import { EstadoPipe } from './pipes/estado.pipe';
 import { StrPreciosPipe } from './pipes/str-precios.pipe';
+import { NoticiasComponent } from './noticias/noticias.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { StrPreciosPipe } from './pipes/str-precios.pipe';
     ConveniosComponent,
     AdministracionComponent,
     EstadoPipe,
-    StrPreciosPipe
+    StrPreciosPipe,
+    NoticiasComponent
   ],
   imports: [
     BrowserModule,

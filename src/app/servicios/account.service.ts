@@ -73,7 +73,7 @@ export class AccountService {
    * Devueve true si el rol del usuario logueado es ADMIN
    */
   isAdmin(){
-    return false;
+    return true;
   }
 
 }

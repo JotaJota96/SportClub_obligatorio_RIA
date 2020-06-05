@@ -1,0 +1,91 @@
+<div class="p0 m0 clr-row ">
+    <div class="clr-col"></div>
+  
+    <div class="clr-col-12 clr-col-md-10">
+  
+      <h3 class="titulo">Noticias</h3>
+  
+      <div class="clr-row mt4">
+        <div class="clr-col"></div>
+  
+        <div class="respTable  clr-col-12">
+  
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Fecha caducidad</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--Datos de la tabla-->
+              <tr *ngFor="let item of lstNoticias; let i = index">
+                <td>{{item.id}}</td>
+                <td>{{item.titulo}}</td>
+                <td>{{item.fechaCaducidad | date}}</td>
+                <td>
+                  <div class="m1 btn-group btn-primary">
+                    <button class="btn btn-danger" (click)="borrar(i)">Borrar</button>
+                    <button class="btn btn-primary" (click)="abrirModificar(i)">Editar</button>
+                  </div>
+                </td>
+              </tr>
+  
+             <!--Fin de Datos de la tabla-->
+            </tbody>
+          </table>
+        </div>
+        <div class="clr-col"></div>
+      </div>
+      <div class="agregar clr-row">
+        <div class="clr-col-12"><button class="btn btn-success" (click)="abrirAgregar()">Agregar</button></div>
+      </div>
+    </div>
+    <div class="clr-col"></div>
+  </div>
+
+   <!--*******************************  MODAL  Agregar/modificar *******************************-->
+   <clr-modal [(clrModalOpen)]="isModalVisible">
+    <h3 class="modal-title" >{{titulo}} Noticia</h3>
+    <div class="modal-body">
+      <!--******************* Formulario  *********************-->
+      <form [formGroup]="profileForm" clrForm >
+
+        <clr-input-container>
+          <label >Título</label>
+          <input clrInput type="text" formControlName="titulo" >
+        </clr-input-container>
+        
+        <clr-textarea-container>
+          <label>Descripción</label>
+          <textarea clrTextarea formControlName="descripcion"></textarea>
+        </clr-textarea-container>
+
+        <clr-input-container>
+          <label >Imagen</label>
+            Carlos, aca necesito un boton para subir una foto
+          <!--
+          <input clrInput type="text" formControlName="imagen" >
+          -->
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Fecha de caducidad</label>
+          <input clrInput type="date" formControlName="fechaCaducidad" >
+        </clr-input-container>
+
+        <input clrInput type="hidden" formControlName="id" >
+
+      </form>
+      <!--*******************.............*********************-->
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="cerrar()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="confirmar()" [disabled]="!profileForm.valid">Confirmar</button>
+    </div>
+    
+  </clr-modal>
+  <!--******************************************************************************-->
