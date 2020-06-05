@@ -22,14 +22,14 @@
             <tbody>
   
               <!--Datos de la tabla-->
-              <tr>
-                <td>1</td>
-                <td>Golf</td>
-                <td>Activo</td>
+              <tr *ngFor="let m of listaPrestadoresDeSalud; let i = index">
+                <td>{{m.id}}</td>
+                <td>{{m.nombre}}</td>
+                <td>{{m.activo | estado}}</td>
                 <td>
                   <div class="m1 btn-group btn-primary">
-                    <button class="btn btn-danger" (click)="borrar()">Borrar</button>
-                    <button class="btn btn-primary" (click)="abrirModificar(1)">Modificar</button>
+                    <button class="btn btn-danger" (click)="borrar(i)">Borrar</button>
+                    <button class="btn btn-primary" (click)="abrirModificar(i)">Modificar</button>
                   </div>
                 </td>
               </tr>
@@ -42,42 +42,40 @@
       </div>
       <div class="agregar clr-row">
         <div class="clr-col-12">
-          <button class="btn btn-success" (click)="abrirAgregar()">Agregar</button>
-
-          <!--*******************************  MODAL  Agregar/modificar *******************************-->
-          <clr-modal [(clrModalOpen)]="isModalVisible">
-            <h3 class="modal-title" >{{titulo}} Prestador de Salud</h3>
-            <div class="modal-body">
-              <!--******************* Formulario  *********************-->
-              <form [formGroup]="profileForm" clrForm >
-
-                <clr-input-container>
-                  <label >Nombre</label>
-                  <input clrInput type="text" formControlName="nombre" >
-                </clr-input-container>
-
-                <clr-checkbox-container>
-                  <clr-checkbox-wrapper>
-                    <input type="checkbox" clrCheckbox formControlName="activo">
-                    <label>Actvio</label>
-                  </clr-checkbox-wrapper>
-                </clr-checkbox-container>
-
-
-              </form>
-              <!--*******************.............*********************-->
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" (click)="cerrar()">Cancel</button>
-              <button type="button" class="btn btn-primary" (click)="confirmar()" [disabled]="!profileForm.valid">Confirmar</button>
-            </div>
-            
-          </clr-modal>
-          <!--******************************************************************************-->
-          
+          <button class="btn btn-success" (click)="abrirAgregar()">Agregar</button>          
         </div>
       </div>
     </div>
     <div class="clr-col"></div>
   </div>
+
+  <!--*******************************  MODAL  Agregar/modificar *******************************-->
+  <clr-modal [(clrModalOpen)]="isModalVisible">
+    <h3 class="modal-title" >{{titulo}} Prestador de Salud</h3>
+    <div class="modal-body">
+      <!--******************* Formulario  *********************-->
+      <form [formGroup]="profileForm" clrForm >
+
+        <clr-input-container>
+          <label >Nombre</label>
+          <input clrInput type="text" formControlName="nombre" >
+        </clr-input-container>
+
+        <clr-checkbox-container>
+          <clr-checkbox-wrapper>
+            <input type="checkbox" clrCheckbox formControlName="activo">
+            <label>Actvio</label>
+          </clr-checkbox-wrapper>
+        </clr-checkbox-container>
+
+        <input type="hidden" formControlName="id">
+
+      </form>
+      <!--*******************.............*********************-->
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="cerrar()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="confirmar()" [disabled]="!profileForm.valid">Confirmar</button>
+    </div>
+  </clr-modal>
+  <!--******************************************************************************-->
