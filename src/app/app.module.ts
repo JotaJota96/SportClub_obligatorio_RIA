@@ -36,6 +36,7 @@ import { AdministracionComponent } from './administracion/administracion.compone
 import { EstadoPipe } from './pipes/estado.pipe';
 import { StrPreciosPipe } from './pipes/str-precios.pipe';
 import { NoticiasComponent } from './noticias/noticias.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { NoticiasComponent } from './noticias/noticias.component';
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorTokenService,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

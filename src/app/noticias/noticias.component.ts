@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Noticia } from '../clases/noticia';
 import { NoticiasService } from '../servicios/noticias.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-noticias',
@@ -16,7 +17,8 @@ export class NoticiasComponent implements OnInit {
   public profileForm: FormGroup;
   imagenVistaPrevia:String ="";
 
-  constructor(protected notiServ:NoticiasService) {
+  constructor(protected notiServ:NoticiasService, 
+              protected datepipe: DatePipe) {
   }
 
   ngOnInit(): void {
@@ -50,7 +52,10 @@ export class NoticiasComponent implements OnInit {
     this.profileForm.controls['titulo'].setValue(this.lstNoticias[indice].titulo);
     this.profileForm.controls['descripcion'].setValue(this.lstNoticias[indice].descripcion);
     this.profileForm.controls['imagen'].setValue(this.lstNoticias[indice].imagen);
-    this.profileForm.controls['fechaCaducidad'].setValue(this.lstNoticias[indice].fechaCaducidad);
+    
+    let fecha:String = this.lstNoticias[indice].fechaCaducidad;
+    fecha = this.datepipe.transform(fecha, 'yyyy-MM-dd');
+    this.profileForm.controls['fechaCaducidad'].setValue(fecha);
 
     // cargo la imagen para mostrar
     this.imagenVistaPrevia = this.profileForm.controls['imagen'].value;
