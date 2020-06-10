@@ -14,9 +14,9 @@ export class NoticiasComponent implements OnInit {
   titulo:string ="";
   lstNoticias:Noticia[];
   public profileForm: FormGroup;
+  imagenVistaPrevia:String ="";
 
   constructor(protected notiServ:NoticiasService) {
-
   }
 
   ngOnInit(): void {
@@ -52,7 +52,9 @@ export class NoticiasComponent implements OnInit {
     this.profileForm.controls['imagen'].setValue(this.lstNoticias[indice].imagen);
     this.profileForm.controls['fechaCaducidad'].setValue(this.lstNoticias[indice].fechaCaducidad);
 
-    console.log(indice);
+    // cargo la imagen para mostrar
+    this.imagenVistaPrevia = this.profileForm.controls['imagen'].value;
+
     this.accionAgregar = false;
     this.isModalVisible = true;//muestra el modal.
   }
@@ -128,12 +130,45 @@ export class NoticiasComponent implements OnInit {
   }
 
   vaciarCampos(){
+    this.imagenVistaPrevia = "";
     this.profileForm.controls['id'].setValue("");
     this.profileForm.controls['titulo'].setValue("");
     this.profileForm.controls['descripcion'].setValue("");
-    this.profileForm.controls['imagen'].setValue(" ");
+    this.profileForm.controls['imagen'].setValue("");
     this.profileForm.controls['fechaCaducidad'].setValue("");
+    this.restablecerAImagenPorDefecto();
   }
+
+  // ***** Funciones para cargar y convertir imagen ********************************
+  // extraido de: https://stackoverflow.com/questions/42482951/converting-an-image-to-base64-in-angular-2
+  // esta funcion se llama al cargar un archivo
+  alCargarImagen(evt: any) {
+    const archivo = evt.target.files[0];
+    
+    // Si realmente se cargo un archivo
+    if (archivo) {
+      const lector = new FileReader();
+      
+      lector.onload = this.obtenerStringImagen.bind(this);
+      lector.readAsBinaryString(archivo);
+      // OJO que el string con la imagen demora unos milisegundos en cargarse
+    }else{
+      // aca no se como hacer que entre, pero por las dudas le pongo esto...
+      this.profileForm.controls['imagen'].setValue("");
+      this.restablecerAImagenPorDefecto();
+    }
+  }
+  obtenerStringImagen(e) {
+    let strImg = "data:image/png;base64," + btoa(e.target.result);
+    this.profileForm.controls['imagen'].setValue(strImg);
+    this.imagenVistaPrevia = this.profileForm.controls['imagen'].value;
+  }
+  // ***** Fin de Funciones para cargar y convertir imagen *************************
+
+  private restablecerAImagenPorDefecto() {
+    this.imagenVistaPrevia = "/assets/images/default-image.png";
+  }
+
 
 }
 
