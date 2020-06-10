@@ -51,6 +51,8 @@ export class PreciosComponent implements OnInit {
     this.titulo="Modificar";
     this.profileForm.controls['valor'].setValue(this.listaPrecios[indice].valor);
     this.profileForm.controls['fechaVigencia'].setValue(this.listaPrecios[indice].fechaVigencia);
+    //this.profileForm.controls['fechaVigencia'].setValue('06/14/1989');
+
     this.profileForm.controls['categoria'].setValue(this.listaPrecios[indice].categoria);
     this.profileForm.controls['id'].setValue(this.listaPrecios[indice].id);
     this.accionAgregar = false;

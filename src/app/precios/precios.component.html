@@ -68,8 +68,8 @@
 
         <clr-select-container>
           <label >Categoria</label>
-          <select clrSelect name="categoria" formControlName="categoria" >
-              <option *ngFor="let c of liscaCateg;let i = index" value="{{i}}">
+          <select clrSelect name="categoria" formControlName="categoria">
+              <option *ngFor="let c of liscaCateg;let i = index" value="{{i}}"> <!--selected="c.nombre=='dfsdsfds'"-->
                 {{c.nombre}}
               </option>
           </select>
