@@ -3,29 +3,28 @@
   
     <div class="clr-col-12 clr-col-md-10">
   
-      <h3 class="titulo">Medios de pago</h3>
+      <h3 class="titulo">Noticias</h3>
   
       <div class="clr-row mt4">
         <div class="clr-col"></div>
   
-        <div class="cont_Form clr-col-12 ">
+        <div class="respTable  clr-col-12">
   
           <table class="table">
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th>Estado</th>
+                <th>Título</th>
+                <th>Fecha caducidad</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-  
               <!--Datos de la tabla-->
-              <tr *ngFor="let m of listaMediosDePago; let i = index">
-                <td>{{m.id}}</td>
-                <td>{{m.nombre}}</td>
-                <td>{{m.activo | estado}}</td>
+              <tr *ngFor="let item of lstNoticias; let i = index">
+                <td>{{item.id}}</td>
+                <td>{{item.titulo}}</td>
+                <td>{{item.fechaCaducidad | date}}</td>
                 <td>
                   <div class="m1 btn-group btn-primary">
                     <button class="btn btn-danger" (click)="borrar(i)">Borrar</button>
@@ -33,8 +32,8 @@
                   </div>
                 </td>
               </tr>
-             <!--Fin de Datos de la tabla-->        
-
+  
+             <!--Fin de Datos de la tabla-->
             </tbody>
           </table>
         </div>
@@ -47,28 +46,39 @@
     <div class="clr-col"></div>
   </div>
 
-  <!--*******************************  MODAL  Agregar/modificar *******************************-->
-  <clr-modal [(clrModalOpen)]="isModalVisible">
-    <h3 class="modal-title" >{{titulo}} Medio de pago</h3>
+   <!--*******************************  MODAL  Agregar/modificar *******************************-->
+   <clr-modal [(clrModalOpen)]="isModalVisible">
+    <h3 class="modal-title" >{{titulo}} Noticia</h3>
     <div class="modal-body">
       <!--******************* Formulario  *********************-->
-
       <form [formGroup]="profileForm" clrForm >
 
         <clr-input-container>
-          <label >Nombre</label>
-          <input clrInput type="text" formControlName="nombre" >
+          <label >Título</label>
+          <input clrInput type="text" formControlName="titulo" >
+        </clr-input-container>
+        
+        <clr-textarea-container>
+          <label>Descripción</label>
+          <textarea clrTextarea formControlName="descripcion"></textarea>
+        </clr-textarea-container>
+
+        <clr-input-container>
+          <label>Fecha de caducidad</label>
+          <input clrInput type="date" formControlName="fechaCaducidad" >
         </clr-input-container>
 
-        <clr-checkbox-container>
-          <clr-checkbox-wrapper>
-            <input type="checkbox" clrCheckbox formControlName="activo">
-            <label>Actvio</label>
-          </clr-checkbox-wrapper>
-        </clr-checkbox-container>
+        <clr-input-container>
+          <label >Imagen</label>
+          <input clrInput type="file" (change)="alCargarImagen($event)" accept=".png, .jpg, .jpeg," />
+        </clr-input-container>
+        <!-- Para previsualizar la imagen -->
+        <div class="card-img">
+          <img class="vista-previa" src={{imagenVistaPrevia}}>
+        </div>
 
-        <input type="hidden" formControlName="id">
-        
+        <input clrInput type="hidden" formControlName="id" >
+
       </form>
       <!--*******************.............*********************-->
     </div>

@@ -11,10 +11,7 @@ th{
     vertical-align: 
     middle; font-size: 20px;
 }
-
-.respTable{
-    overflow-x: auto;
+.vista-previa{
+    margin-top: 20px;
+    border-radius: 10px;
 }
-
-
-

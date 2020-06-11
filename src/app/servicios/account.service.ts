@@ -36,13 +36,46 @@ export class AccountService {
     return this.http.post(this.apiURL + '/addrole', datos);
   }
 
-  getRoles(datos:AddRoleDTO){
+  getRoles(){
     return this.http.post<string[]>(this.apiURL + '/roles', null);
   }
 
   logout(){
     localStorage.removeItem("loginData"); 
   }
+
+  /**
+   * Devuelve true si hay un usuario logueado actualmente
+   */
+  isLogged(){
+    let loginData:LoginResponseDTO = JSON.parse(localStorage.getItem("loginData"));
+    if (loginData != null){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  /**
+   * Devueve true si el rol del usuario logueado es USER
+   */
+  isUser(){
+    return false;
+  }
+
+  /**
+   * Devueve true si el rol del usuario logueado es SECRETARIA
+   */
+  isSecretary(){
+    return true;
+  }
+
+  /**
+   * Devueve true si el rol del usuario logueado es ADMIN
+   */
+  isAdmin(){
+    return true;
+  }
+
 }
 /*
 Account

@@ -3,7 +3,8 @@
     <a [routerLink]="['/']" class="nav-link nav-text">
         SportClub
      </a>
-    <a [routerLink]="['/administracion']" class="nav-link nav-text">
+    <a [routerLink]="['/administracion']" class="nav-link nav-text"
+        *ngIf="mostrarOpcionMenu()">
        Administracion
     </a>
     <a [routerLink]="['/nuestrasActividades']" class="nav-link nav-text">
@@ -15,11 +16,14 @@
     <a [routerLink]="['/quienesSomos']" class="nav-link nav-text">
         Quienes somos
     </a>
-    <a [routerLink]="['/registrarse']" class="nav-link nav-text">
+    <a [routerLink]="['/registrarse']" class="nav-link nav-text" *ngIf="!estoyLogeado()">
         Registrarse
     </a>
-    <a [routerLink]="['/logIn']" class="nav-link nav-text">
-        Log in
+    <a [routerLink]="['/logIn']" class="nav-link nav-text" *ngIf="!estoyLogeado()">
+        Iniciar sesión
+    </a>
+    <a [routerLink]="['/']" class="nav-link nav-text" *ngIf="estoyLogeado()" (click)="cerrarSesion()">
+        Cerrar sesión
     </a>
 </div>
 

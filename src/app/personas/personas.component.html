@@ -13,39 +13,25 @@
           <table class="table">
             <thead>
               <tr>
-                <th>ID_Persona</th>
-                <th>PrimerNombre</th>
-                <th>SegundoNombre</th>
-                <th>PrimerApellido</th>
-                <th>SegundoApellido</th>
-                <th>FechaNacimiento</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Nacimiento</th>
                 <th>Documento</th>
-                <th>TipoDocumento</th>
-                <th>Telefono</th>
-                <th>Direccion</th>
-                <th>FechaVenceCarneSalud</th>
-                <th>PrestadorDeSalud</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <!--Datos de la tabla-->
-              <tr>
-                <td>1</td>
-                <td>Carlos</td>
-                <td>Juan</td>
-                <td>Alvarez</td>
-                <td>Balbiani</td>
-                <td>1995-05-21</td>
-                <td>CI</td>
-                <td>544898746</td>
-                <td>sanjo 234</td>
-                <td>45/85</td>
-                <td>AMSJ</td>
+              <tr *ngFor="let m of listaPersonas; let i = index">
+                <td>{{m.id}}</td>
+                <td>{{m.primerNombre}} {{m.segundoNombre}}</td>
+                <td>{{m.primerApellido}} {{m.segundoApellido}}</td>
+                <td>{{m.documento}}</td>
                 <td>
                   <div class="m1 btn-group btn-primary">
-                    <button class="btn btn-danger" (click)="borrar()">Borrar</button>
-                    <button class="btn btn-primary" (click)="abrirModificar(1)">Editar</button>
+                    <button class="btn btn-danger" (click)="borrar(i)">Borrar</button>
+                    <button class="btn btn-primary" (click)="abrirModificar(i)">Editar</button>
                   </div>
                 </td>
               </tr>
@@ -107,7 +93,7 @@
 
         <clr-input-container>
           <label>Telefono</label>
-          <input clrInput type="number" formControlName="telefono" >
+          <input clrInput type="text" formControlName="telefono" >
         </clr-input-container>
 
         <clr-input-container>
@@ -120,10 +106,17 @@
           <input clrInput type="date" formControlName="fechaVenceCarneSalud" >
         </clr-input-container>
 
-        <clr-input-container>
+        <clr-select-container>
           <label>Prestador De Salud</label>
-          <input clrInput type="text" formControlName="prestadorDeSalud" >
-        </clr-input-container>
+          <select clrSelect name="prestadorDeSalud" formControlName="prestadorDeSalud">
+              <option *ngFor="let c of liscaPrestadoresDeSalud; let i = index" value="{{i}}" > <!--selected="c.nombre=='dfsdsfds'"-->
+                {{c.nombre}}
+              </option>
+          </select>
+        </clr-select-container>
+
+
+        <input type="hidden" formControlName="id">
 
       </form>
       <!--*******************.............*********************-->

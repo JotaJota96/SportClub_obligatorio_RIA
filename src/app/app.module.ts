@@ -33,6 +33,10 @@ import { PrestadoresDeSaludComponent } from './prestadores-de-salud/prestadores-
 import { ConveniosComponent } from './convenios/convenios.component';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AdministracionComponent } from './administracion/administracion.component';
+import { EstadoPipe } from './pipes/estado.pipe';
+import { StrPreciosPipe } from './pipes/str-precios.pipe';
+import { NoticiasComponent } from './noticias/noticias.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,10 @@ import { AdministracionComponent } from './administracion/administracion.compone
     PreciosComponent,
     PrestadoresDeSaludComponent,
     ConveniosComponent,
-    AdministracionComponent
+    AdministracionComponent,
+    EstadoPipe,
+    StrPreciosPipe,
+    NoticiasComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +84,8 @@ import { AdministracionComponent } from './administracion/administracion.compone
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorTokenService,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

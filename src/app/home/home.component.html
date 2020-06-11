@@ -8,50 +8,38 @@
         <div class="clr-row mt4">
 
             <!-- Inicio de las noticias-->
-
-            <div class="Cuerpo clr-col-12 clr-col-md-6 clr-col-lg-4">
+            <div class="Cuerpo clr-col-12 clr-col-md-6 clr-col-lg-4" 
+                *ngFor="let n of noticias; let i = index">
                 <div class="gTitulo">
-                    <p>Lorem ipsum dolor sit </p>
+                    <p>{{n.titulo}}</p>
+                </div>
+                <div class="card-img">
+                    <img src="{{n.imagen}}" alt="">
                 </div>
                 <div class="Contenido">
-                    <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis blanditiis praesentium soluta. Iste obcaecati eaque harum deserunt quae illo, molestias consequatur eos ipsum sunt distinctio praesentium. Fugit similique ullam quisquam!</p>
-                </div>
-            </div>
-
-
-            <div class="Cuerpo clr-col-12 clr-col-md-6 clr-col-lg-4">
-                <div class="gTitulo">
-                    <p>Lorem ipsum dolor sit </p>
-                </div>
-                <div class="Contenido">
-                    <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis blanditiis praesentium soluta. Iste obcaecati eaque harum deserunt quae illo, molestias consequatur eos ipsum sunt distinctio praesentium. Fugit similique ullam quisquam!</p>
-                </div>
-            </div>
-
-
-            <div class="Cuerpo clr-col-12 clr-col-md-6 clr-col-lg-4">
-                <div class="gTitulo">
-                    <p>Lorem ipsum dolor sit </p>
-                </div>
-                <div class="Contenido">
-                    <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis blanditiis praesentium soluta. Iste obcaecati eaque harum deserunt quae illo, molestias consequatur eos ipsum sunt distinctio praesentium. Fugit similique ullam quisquam!</p>
-                </div>
-            </div>
-
-            <div class="Cuerpo clr-col-12 clr-col-md-6 clr-col-lg-4">
-                <div class="gTitulo">
-                    <p>Lorem ipsum dolor sit </p>
-                </div>
-                <div class="Contenido">
-                    <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis blanditiis praesentium soluta. Iste obcaecati eaque harum deserunt quae illo, molestias consequatur eos ipsum sunt distinctio praesentium. Fugit similique ullam quisquam!</p>
+                    <p>{{n.descripcion.substring(0,120)}}...</p>
+                    <span (click)="abrirModal(i)">Ver más</span> 
                 </div>
             </div>
             <!-- Fin de las noticias-->
-            
-            
         </div>
-    
     </div>
-    
     <div class="clr-col"></div>
 </div>
+
+
+<!--*******************************  MODAL  Agregar/modificar **************{{noticiaActual.titulo}}**********-->
+<clr-modal [(clrModalOpen)]="isModalVisible">
+    <h3 class="modal-title" >{{noticiaActual.titulo}}</h3>
+    <div class="modal-body">
+        <!--******************* Formulario  *********************-->
+        <div class="card-img">
+            <img src="{{noticiaActual.imagen}}" alt="">
+        </div>
+        <div class="Contenido">
+            <p>{{noticiaActual.descripcion}}...</p>
+        </div>
+        <!--*******************.............*********************-->
+    </div>
+</clr-modal>
+<!--******************************************************************************-->
