@@ -125,7 +125,7 @@ export class ConratosComponent implements OnInit {
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante la eliminacion");
+        alert("Ha ocurrido un error durante la eliminacion: "+ error.statusText);
       }
     );
   }
