@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Precio } from '../clases/precio';
-import { PreciosService } from '../servicios/precios.service';
-import { CategoriasService } from '../servicios/categorias.service';
-import { Categoria } from '../clases/categoria';
+import { Precio } from '../../clases/precio';
+import { PreciosService } from '../../servicios/precios.service';
+import { CategoriasService } from '../../servicios/categorias.service';
+import { Categoria } from '../../clases/categoria';
 import { DatePipe } from '@angular/common';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-precios',
@@ -22,9 +24,17 @@ export class PreciosComponent implements OnInit {
 
   public profileForm: FormGroup;
 
-  constructor(protected precioService : PreciosService, protected catService : CategoriasService, protected datepipe: DatePipe) { }
+  constructor(protected precioService : PreciosService, 
+              protected catService : CategoriasService, 
+              protected datepipe: DatePipe,
+              protected accServ:AccountService, 
+              private router:Router) {
+
+  }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       valor: new FormControl('', [Validators.required, Validators.minLength(1),Validators.maxLength(10)]),
       fechaVigencia: new FormControl('', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]),
@@ -33,6 +43,12 @@ export class PreciosComponent implements OnInit {
     });
     this.cargarLista();
     this.cargarCategoria();
+  }
+
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
   }
 
   cargarLista(){

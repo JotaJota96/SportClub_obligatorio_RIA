@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AccountService } from '../servicios/account.service';
+import { AccountService } from '../../servicios/account.service';
 import {Router} from "@angular/router";
-import { RegistroDTO } from '../clases/registro-dto';
+import { RegistroDTO } from '../../clases/registro-dto';
 
 @Component({
   selector: 'app-registrarse',

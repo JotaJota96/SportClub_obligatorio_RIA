@@ -1,40 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PrestadorDeSalud } from '../clases/prestador-de-salud';
-import { PrestadoresDeSaludService } from '../servicios/prestadores-de-salud.service';
-
+import { MedioDePago } from '../../clases/medio-de-pago';
+import { MediosDePagoService } from '../../servicios/medios-de-pago.service';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-prestadores-de-salud',
-  templateUrl: './prestadores-de-salud.component.html',
-  styleUrls: ['./prestadores-de-salud.component.css']
+  selector: 'app-medios-de-pago',
+  templateUrl: './medios-de-pago.component.html',
+  styleUrls: ['./medios-de-pago.component.css']
 })
-export class PrestadoresDeSaludComponent implements OnInit {
-
+export class MediosDePagoComponent implements OnInit {
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
 
-  listaPrestadoresDeSalud:PrestadorDeSalud[];
+  listaMediosDePago:MedioDePago[];
 
   titulo:string ="";
 
   public profileForm: FormGroup;
 
-  constructor(protected pdsService:PrestadoresDeSaludService) { 
-  }
+  constructor(protected mdpService:MediosDePagoService,
+              protected accServ:AccountService, 
+              private router:Router) {
+   }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
       activo: new FormControl(false),
       id: new FormControl('')
     });
+
     this.cargarLista();
   }
 
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
+  }
   cargarLista(){
-    this.pdsService.getAll().subscribe(
-      (pds)=>{
-        this.listaPrestadoresDeSalud=pds;
+    this.mdpService.getAll().subscribe(
+      (mdp)=>{
+        this.listaMediosDePago=mdp;
       }
     );
   }
@@ -46,9 +56,9 @@ export class PrestadoresDeSaludComponent implements OnInit {
 
   abrirModificar(indice:number){ //indice en el array del elemento que se quiere modificar
     this.titulo="Modificar";
-    this.profileForm.controls['nombre'].setValue(this.listaPrestadoresDeSalud[indice].nombre);
-    this.profileForm.controls['activo'].setValue(this.listaPrestadoresDeSalud[indice].activo);
-    this.profileForm.controls['id'].setValue(this.listaPrestadoresDeSalud[indice].id);
+    this.profileForm.controls['nombre'].setValue(this.listaMediosDePago[indice].nombre);
+    this.profileForm.controls['activo'].setValue(this.listaMediosDePago[indice].activo);
+    this.profileForm.controls['id'].setValue(this.listaMediosDePago[indice].id);
     this.accionAgregar = false;
     this.isModalVisible = true;//muestra el modal.
   }
@@ -61,8 +71,8 @@ export class PrestadoresDeSaludComponent implements OnInit {
   }
 
   borrar(indice:number){
-    let id = this.listaPrestadoresDeSalud[indice].id;
-    this.pdsService.delete(id).subscribe(
+    let id = this.listaMediosDePago[indice].id;
+    this.mdpService.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha eliminado exitosamente");
@@ -94,8 +104,8 @@ export class PrestadoresDeSaludComponent implements OnInit {
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
 
-    let datos = new PrestadorDeSalud(0, nombre, estado);
-    this.pdsService.create(datos).subscribe(
+    let datos = new MedioDePago(0, nombre, estado);
+    this.mdpService.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha agregado exitosamente");
@@ -111,8 +121,8 @@ export class PrestadoresDeSaludComponent implements OnInit {
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
     let id = this.profileForm.controls['id'].value;
-    let datos = new PrestadorDeSalud(id, nombre, estado);
-    this.pdsService.edit(datos).subscribe(
+    let datos = new MedioDePago(id, nombre, estado);
+    this.mdpService.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha modificado exitosamente");

@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from '../clases/persona';
-import { Convenio } from '../clases/convenio';
-import { Categoria } from '../clases/categoria';
-import { MedioDePago } from '../clases/medio-de-pago';
-import { ContratosService } from '../servicios/contratos.service';
-import { PersonasService } from '../servicios/personas.service';
-import { ConveniosService } from '../servicios/convenios.service';
-import { CategoriasService } from '../servicios/categorias.service';
-import { MediosDePagoService } from '../servicios/medios-de-pago.service';
+import { Persona } from '../../clases/persona';
+import { Convenio } from '../../clases/convenio';
+import { Categoria } from '../../clases/categoria';
+import { MedioDePago } from '../../clases/medio-de-pago';
+import { ContratosService } from '../../servicios/contratos.service';
+import { PersonasService } from '../../servicios/personas.service';
+import { ConveniosService } from '../../servicios/convenios.service';
+import { CategoriasService } from '../../servicios/categorias.service';
+import { MediosDePagoService } from '../../servicios/medios-de-pago.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Contrato } from '../clases/contrato';
+import { Contrato } from '../../clases/contrato';
 import { DatePipe } from '@angular/common';
-import { ContratoDTO } from '../clases/contrato-dto';
+import { ContratoDTO } from '../../clases/contrato-dto';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-conratos',
@@ -36,11 +38,15 @@ export class ConratosComponent implements OnInit {
               protected convenioService: ConveniosService,
               protected categoriaService: CategoriasService,
               protected mdpService:MediosDePagoService,
-              protected datepipe: DatePipe){
+              protected datepipe: DatePipe,
+              protected accServ:AccountService, 
+              private router:Router){
 
   }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       fechaHoraGenerado: new FormControl('', [Validators.required]),
       usuarioGenero: new FormControl('', [Validators.required]),
@@ -60,6 +66,11 @@ export class ConratosComponent implements OnInit {
 
   }
 
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
+  }
   cargarLista(){
     this.contratoService.getAll().subscribe(
       (cont)=>{

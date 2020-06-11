@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../servicios/account.service';
+import { AccountService } from '../../servicios/account.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AddRoleDTO } from '../clases/add-role-dto';
+import { AddRoleDTO } from '../../clases/add-role-dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -13,9 +14,14 @@ export class AccountComponent implements OnInit {
   public formulario: FormGroup;
   listaRoles:string[];
 
-  constructor(protected accServ:AccountService) { }
+  constructor(protected accServ:AccountService,
+                private router:Router) {
+
+    }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+
     this.formulario = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
       rol: new FormControl('', [Validators.required]),
@@ -26,6 +32,12 @@ export class AccountComponent implements OnInit {
         this.listaRoles = roles;
       }
     );
+  }
+
+  private verificarPermisos():void{
+    if ( ! this.accServ.isAdmin()){
+      this.router.navigate(['/administracion']);
+    }
   }
 
   confirmar(){

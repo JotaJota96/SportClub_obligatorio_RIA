@@ -1,28 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ActividadesComponent } from './actividades/actividades.component';
-import { HomeComponent } from './home/home.component';
-import { QuienesSomosComponent } from './quienes-somos/quienes-somos.component';
-import { LogInComponent } from './log-in/log-in.component';
-import { RegistrarseComponent } from './registrarse/registrarse.component';
-import { NuestrasActividadesComponent } from './nuestras-actividades/nuestras-actividades.component';
-import { ContactosComponent } from './contactos/contactos.component';
-import { AccountComponent } from './account/account.component';
-import { CategoriasComponent } from './categorias/categorias.component';
-import { ConveniosComponent } from './convenios/convenios.component';
-import { MediosDePagoComponent } from './medios-de-pago/medios-de-pago.component';
-import { PersonasComponent } from './personas/personas.component';
-import { PreciosComponent } from './precios/precios.component';
-import { PrestadoresDeSaludComponent } from './prestadores-de-salud/prestadores-de-salud.component';
-import { AdministracionComponent } from './administracion/administracion.component';
-import { ConratosComponent } from './conratos/conratos.component';
-import { NoticiasComponent } from './noticias/noticias.component';
+
+// componentes de acceso publico
+import { HomeComponent }                from './acceso-publico/home/home.component';
+import { QuienesSomosComponent }        from './acceso-publico/quienes-somos/quienes-somos.component';
+import { LogInComponent }               from './acceso-publico/log-in/log-in.component';
+import { RegistrarseComponent }         from './acceso-publico/registrarse/registrarse.component';
+import { NuestrasActividadesComponent } from './acceso-publico/nuestras-actividades/nuestras-actividades.component';
+import { ContactosComponent }           from './acceso-publico/contactos/contactos.component';
+
+
+//Componentes de administracion
+import { AdministracionComponent }     from './administracion/administracion.component';
+import { ActividadesComponent }        from './administracion/actividades/actividades.component';
+import { AccountComponent }            from './administracion/account/account.component';
+import { CategoriasComponent }         from './administracion/categorias/categorias.component';
+import { MediosDePagoComponent }       from './administracion/medios-de-pago/medios-de-pago.component';
+import { PersonasComponent }           from './administracion/personas/personas.component';
+import { PreciosComponent }            from './administracion/precios/precios.component';
+import { PrestadoresDeSaludComponent } from './administracion/prestadores-de-salud/prestadores-de-salud.component';
+import { ConveniosComponent }          from './administracion/convenios/convenios.component';
+import { NoticiasComponent }           from './administracion/noticias/noticias.component';
+import { ConratosComponent }           from './administracion/conratos/conratos.component';
 
 const routes: Routes = [
-  {
-    path:'actividadesa',
-    component:ActividadesComponent
-  },
+  // Componentes publicos ----------------------------------------------
   {
     path:'',
     component:HomeComponent
@@ -47,45 +49,50 @@ const routes: Routes = [
     path:'contactos',
     component:ContactosComponent
   },
-  {
-    path:'account',
-    component:AccountComponent
-  },
-  {
-    path:'categorias',
-    component:CategoriasComponent
-  },
-  {
-    path:'convenios',
-    component:ConveniosComponent
-  },
-  {
-    path:'mediosDePago',
-    component:MediosDePagoComponent
-  },
-  {
-    path:'personas',
-    component:PersonasComponent
-  },
-  {
-    path:'precios',
-    component:PreciosComponent
-  },
-  {
-    path:'prestadoresDeSalud',
-    component:PrestadoresDeSaludComponent
-  },
-  {
-    path:'noticias',
-    component:NoticiasComponent
-  },
+  // Componentes relacionados a administracion ------------------------
   {
     path:'administracion',
     component:AdministracionComponent
   },
   {
-    path:'conratos',
+    path:'administracion/account',
+    component:AccountComponent
+  },
+  {
+    path:'administracion/actividadesa',
+    component:ActividadesComponent
+  },
+  {
+    path:'administracion/categorias',
+    component:CategoriasComponent
+  },
+  {
+    path:'administracion/conratos',
     component:ConratosComponent
+  },
+  {
+    path:'administracion/convenios',
+    component:ConveniosComponent
+  },
+  {
+    path:'administracion/mediosDePago',
+    component:MediosDePagoComponent
+  },
+  {
+    path:'administracion/noticias',
+    component:NoticiasComponent
+  },
+  {
+    path:'administracion/personas',
+    component:PersonasComponent
+  },
+  {
+    path:'administracion/precios',
+    component:PreciosComponent
+  },
+  {
+    path:'administracion/prestadoresDeSalud',
+    component:PrestadoresDeSaludComponent
   }
 ];
 

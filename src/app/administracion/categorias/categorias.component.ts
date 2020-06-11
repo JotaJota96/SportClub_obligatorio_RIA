@@ -1,39 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MedioDePago } from '../clases/medio-de-pago';
-import { MediosDePagoService } from '../servicios/medios-de-pago.service';
+import { Categoria } from '../../clases/categoria';
+import { CategoriasService } from '../../servicios/categorias.service';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
+
 @Component({
-  selector: 'app-medios-de-pago',
-  templateUrl: './medios-de-pago.component.html',
-  styleUrls: ['./medios-de-pago.component.css']
+  selector: 'app-categorias',
+  templateUrl: './categorias.component.html',
+  styleUrls: ['./categorias.component.css']
 })
-export class MediosDePagoComponent implements OnInit {
+
+export class CategoriasComponent implements OnInit {
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
 
-  listaMediosDePago:MedioDePago[];
-
+  listaCategorias:Categoria[];
   titulo:string ="";
 
   public profileForm: FormGroup;
 
-  constructor(protected mdpService:MediosDePagoService) {
-   }
+  constructor(protected catService:CategoriasService,
+              protected accServ:AccountService, 
+              private router:Router) { }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
       activo: new FormControl(false),
       id: new FormControl('')
     });
-
     this.cargarLista();
   }
 
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
+  }
   cargarLista(){
-    this.mdpService.getAll().subscribe(
-      (mdp)=>{
-        this.listaMediosDePago=mdp;
+    this.catService.getAll().subscribe(
+      (cat)=>{
+        this.listaCategorias=cat;
       }
     );
   }
@@ -45,9 +55,9 @@ export class MediosDePagoComponent implements OnInit {
 
   abrirModificar(indice:number){ //indice en el array del elemento que se quiere modificar
     this.titulo="Modificar";
-    this.profileForm.controls['nombre'].setValue(this.listaMediosDePago[indice].nombre);
-    this.profileForm.controls['activo'].setValue(this.listaMediosDePago[indice].activo);
-    this.profileForm.controls['id'].setValue(this.listaMediosDePago[indice].id);
+    this.profileForm.controls['nombre'].setValue(this.listaCategorias[indice].nombre);
+    this.profileForm.controls['activo'].setValue(this.listaCategorias[indice].activo);
+    this.profileForm.controls['id'].setValue(this.listaCategorias[indice].id);
     this.accionAgregar = false;
     this.isModalVisible = true;//muestra el modal.
   }
@@ -60,8 +70,8 @@ export class MediosDePagoComponent implements OnInit {
   }
 
   borrar(indice:number){
-    let id = this.listaMediosDePago[indice].id;
-    this.mdpService.delete(id).subscribe(
+    let id = this.listaCategorias[indice].id;
+    this.catService.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha eliminado exitosamente");
@@ -92,9 +102,8 @@ export class MediosDePagoComponent implements OnInit {
   agregar(){
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
-
-    let datos = new MedioDePago(0, nombre, estado);
-    this.mdpService.create(datos).subscribe(
+    let datos = new Categoria(0, nombre, estado, []);
+    this.catService.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha agregado exitosamente");
@@ -110,8 +119,9 @@ export class MediosDePagoComponent implements OnInit {
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
     let id = this.profileForm.controls['id'].value;
-    let datos = new MedioDePago(id, nombre, estado);
-    this.mdpService.edit(datos).subscribe(
+
+    let datos = new Categoria(id, nombre, estado, []);
+    this.catService.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha modificado exitosamente");
@@ -122,4 +132,5 @@ export class MediosDePagoComponent implements OnInit {
       }
     );
   }
+
 }

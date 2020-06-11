@@ -1,38 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Convenio } from '../clases/convenio';
-import { ConveniosService } from '../servicios/convenios.service';
+import { PrestadorDeSalud } from '../../clases/prestador-de-salud';
+import { PrestadoresDeSaludService } from '../../servicios/prestadores-de-salud.service';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-convenios',
-  templateUrl: './convenios.component.html',
-  styleUrls: ['./convenios.component.css']
+  selector: 'app-prestadores-de-salud',
+  templateUrl: './prestadores-de-salud.component.html',
+  styleUrls: ['./prestadores-de-salud.component.css']
 })
-export class ConveniosComponent implements OnInit {
+export class PrestadoresDeSaludComponent implements OnInit {
+
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
-  lstConvenios:Convenio[];
+
+  listaPrestadoresDeSalud:PrestadorDeSalud[];
+
   titulo:string ="";
 
   public profileForm: FormGroup;
-  constructor(protected convServ:ConveniosService) {
 
+  constructor(protected pdsService:PrestadoresDeSaludService,
+              protected accServ:AccountService, 
+              private router:Router) { 
   }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
-      porcentajeDeDescuento: new FormControl('', [Validators.required, Validators.minLength(1),Validators.maxLength(8)]),
       activo: new FormControl(false),
       id: new FormControl('')
     });
     this.cargarLista();
   }
 
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
+  }
+
   cargarLista(){
-    this.convServ.getAll().subscribe(
-      (mdp)=>{
-        this.lstConvenios=mdp;
+    this.pdsService.getAll().subscribe(
+      (pds)=>{
+        this.listaPrestadoresDeSalud=pds;
       }
     );
   }
@@ -44,10 +58,9 @@ export class ConveniosComponent implements OnInit {
 
   abrirModificar(indice:number){ //indice en el array del elemento que se quiere modificar
     this.titulo="Modificar";
-    this.profileForm.controls['nombre'].setValue(this.lstConvenios[indice].nombre);
-    this.profileForm.controls['activo'].setValue(this.lstConvenios[indice].activo);
-    this.profileForm.controls['porcentajeDeDescuento'].setValue(this.lstConvenios[indice].porcentajeDescuento);
-    this.profileForm.controls['id'].setValue(this.lstConvenios[indice].id);
+    this.profileForm.controls['nombre'].setValue(this.listaPrestadoresDeSalud[indice].nombre);
+    this.profileForm.controls['activo'].setValue(this.listaPrestadoresDeSalud[indice].activo);
+    this.profileForm.controls['id'].setValue(this.listaPrestadoresDeSalud[indice].id);
     this.accionAgregar = false;
     this.isModalVisible = true;//muestra el modal.
   }
@@ -60,8 +73,8 @@ export class ConveniosComponent implements OnInit {
   }
 
   borrar(indice:number){
-    let id = this.lstConvenios[indice].id;
-    this.convServ.delete(id).subscribe(
+    let id = this.listaPrestadoresDeSalud[indice].id;
+    this.pdsService.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha eliminado exitosamente");
@@ -83,13 +96,18 @@ export class ConveniosComponent implements OnInit {
     this.cerrar();//cierra el modal
   }
 
+  vaciarCampos(){
+    this.profileForm.controls['nombre'].setValue("");
+    this.profileForm.controls['activo'].setValue(false);
+    this.profileForm.controls['id'].setValue("");
+  }
+
   agregar(){
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
-    let porcentajeDeDescuento = this.profileForm.controls['porcentajeDeDescuento'].value;
 
-    let datos = new Convenio(0, nombre, porcentajeDeDescuento, estado);
-    this.convServ.create(datos).subscribe(
+    let datos = new PrestadorDeSalud(0, nombre, estado);
+    this.pdsService.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha agregado exitosamente");
@@ -104,12 +122,9 @@ export class ConveniosComponent implements OnInit {
   modificar(){
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
-    let porcentajeDeDescuento = this.profileForm.controls['porcentajeDeDescuento'].value;
     let id = this.profileForm.controls['id'].value;
-
-
-    let datos = new Convenio(id, nombre, porcentajeDeDescuento, estado);
-    this.convServ.edit(datos).subscribe(
+    let datos = new PrestadorDeSalud(id, nombre, estado);
+    this.pdsService.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha modificado exitosamente");
@@ -120,12 +135,4 @@ export class ConveniosComponent implements OnInit {
       }
     );
   }
-
-  vaciarCampos(){
-    this.profileForm.controls['nombre'].setValue("");
-    this.profileForm.controls['porcentajeDeDescuento'].setValue("");
-    this.profileForm.controls['activo'].setValue(false);
-    this.profileForm.controls['id'].setValue("");
-  }
-
 }

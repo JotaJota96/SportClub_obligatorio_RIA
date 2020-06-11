@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Persona } from '../clases/persona';
-import { PersonasService } from '../servicios/personas.service';
-import { PrestadorDeSalud } from '../clases/prestador-de-salud';
-import { PrestadoresDeSaludService } from '../servicios/prestadores-de-salud.service';
+import { Persona } from '../../clases/persona';
+import { PersonasService } from '../../servicios/personas.service';
+import { PrestadorDeSalud } from '../../clases/prestador-de-salud';
+import { PrestadoresDeSaludService } from '../../servicios/prestadores-de-salud.service';
 import { DatePipe } from '@angular/common';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personas',
@@ -24,9 +26,17 @@ export class PersonasComponent implements OnInit {
 
 
   public profileForm: FormGroup;
-  constructor(protected personaService : PersonasService, protected pdsService :PrestadoresDeSaludService, protected datepipe: DatePipe) { }
+  constructor(protected personaService : PersonasService, 
+              protected pdsService :PrestadoresDeSaludService, 
+              protected datepipe: DatePipe,
+              protected accServ:AccountService, 
+              private router:Router) {
+    
+  }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       primerNombre: new FormControl('', [Validators.required, Validators.minLength(5),Validators.maxLength(50)]),
       segundoNombre: new FormControl('', [Validators.required, Validators.minLength(5),Validators.maxLength(50)]),
@@ -43,6 +53,12 @@ export class PersonasComponent implements OnInit {
     });
     this.cargarLista();
     this.cargarPDS();
+  }
+
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
   }
 
   cargarLista(){

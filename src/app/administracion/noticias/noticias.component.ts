@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Noticia } from '../clases/noticia';
-import { NoticiasService } from '../servicios/noticias.service';
+import { Noticia } from '../../clases/noticia';
+import { NoticiasService } from '../../servicios/noticias.service';
 import { DatePipe } from '@angular/common';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-noticias',
@@ -18,10 +20,14 @@ export class NoticiasComponent implements OnInit {
   imagenVistaPrevia:String ="";
 
   constructor(protected notiServ:NoticiasService, 
-              protected datepipe: DatePipe) {
+              protected datepipe: DatePipe,
+              protected accServ:AccountService, 
+              private router:Router) {
   }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+
     this.profileForm = new FormGroup({
       id: new FormControl(''),
       titulo: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
@@ -30,6 +36,12 @@ export class NoticiasComponent implements OnInit {
       fechaCaducidad: new FormControl('', [Validators.required])
     });
     this.cargarLista();
+  }
+
+  private verificarPermisos():void{
+    if ( ! this.accServ.isAdmin()){
+      this.router.navigate(['/administracion']);
+    }
   }
 
   cargarLista(){

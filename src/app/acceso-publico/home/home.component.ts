@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Noticia } from '../clases/noticia';
-import { NoticiasService } from '../servicios/noticias.service';
+import { Noticia } from '../../clases/noticia';
+import { NoticiasService } from '../../servicios/noticias.service';
 
 @Component({
   selector: 'app-home',
