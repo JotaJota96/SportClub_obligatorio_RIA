@@ -4,6 +4,7 @@ import { Precio } from '../clases/precio';
 import { PreciosService } from '../servicios/precios.service';
 import { CategoriasService } from '../servicios/categorias.service';
 import { Categoria } from '../clases/categoria';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-precios',
@@ -21,7 +22,7 @@ export class PreciosComponent implements OnInit {
 
   public profileForm: FormGroup;
 
-  constructor(protected precioService : PreciosService, protected catService : CategoriasService) { }
+  constructor(protected precioService : PreciosService, protected catService : CategoriasService, protected datepipe: DatePipe) { }
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
@@ -50,10 +51,12 @@ export class PreciosComponent implements OnInit {
   abrirModificar(indice:number){ //indice en el array del elemento que se quiere modificar
     this.titulo="Modificar";
     this.profileForm.controls['valor'].setValue(this.listaPrecios[indice].valor);
-    this.profileForm.controls['fechaVigencia'].setValue(this.listaPrecios[indice].fechaVigencia);
-    //this.profileForm.controls['fechaVigencia'].setValue('06/14/1989');
 
-    this.profileForm.controls['categoria'].setValue(this.listaPrecios[indice].categoria);
+    let fecha2 = this.listaPrecios[indice].fechaVigencia;
+    fecha2 = this.datepipe.transform(fecha2, 'yyyy-MM-dd');
+    this.profileForm.controls['fechaVigencia'].setValue(fecha2);
+
+    this.profileForm.controls['categoria'].setValue(this.obtenerIndice(this.listaPrecios[indice].categoria.id));
     this.profileForm.controls['id'].setValue(this.listaPrecios[indice].id);
     this.accionAgregar = false;
     this.isModalVisible = true;//muestra el modal.
@@ -139,6 +142,15 @@ export class PreciosComponent implements OnInit {
         this.liscaCateg =cats;
       }
     );
+  }
+
+  obtenerIndice(id:number){
+    for(let i=0; i < this.liscaCateg.length; i++){
+      if(this.liscaCateg[i].id == id){
+        return i;
+      }
+    }
+    return -1;
   }
 
 }

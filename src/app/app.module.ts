@@ -35,6 +35,7 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AdministracionComponent } from './administracion/administracion.component';
 import { EstadoPipe } from './pipes/estado.pipe';
 import { StrPreciosPipe } from './pipes/str-precios.pipe';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { StrPreciosPipe } from './pipes/str-precios.pipe';
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorTokenService,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
