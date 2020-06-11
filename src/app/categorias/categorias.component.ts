@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Categoria } from '../clases/categoria';
 import { CategoriasService } from '../servicios/categorias.service';
-import { Precio } from '../clases/precio';
 
 @Component({
   selector: 'app-categorias',
