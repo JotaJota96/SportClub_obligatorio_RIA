@@ -11,3 +11,7 @@ th{
     vertical-align: 
     middle; font-size: 20px;
 }
+.vista-previa{
+    margin-top: 20px;
+    border-radius: 10px;
+}

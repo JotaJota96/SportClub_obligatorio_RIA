@@ -64,17 +64,18 @@
         </clr-textarea-container>
 
         <clr-input-container>
-          <label >Imagen</label>
-            Carlos, aca necesito un boton para subir una foto
-          <!--
-          <input clrInput type="text" formControlName="imagen" >
-          -->
-        </clr-input-container>
-
-        <clr-input-container>
           <label>Fecha de caducidad</label>
           <input clrInput type="date" formControlName="fechaCaducidad" >
         </clr-input-container>
+
+        <clr-input-container>
+          <label >Imagen</label>
+          <input clrInput type="file" (change)="alCargarImagen($event)" accept=".png, .jpg, .jpeg," />
+        </clr-input-container>
+        <!-- Para previsualizar la imagen -->
+        <div class="card-img">
+          <img class="vista-previa" src={{imagenVistaPrevia}}>
+        </div>
 
         <input clrInput type="hidden" formControlName="id" >
 

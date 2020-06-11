@@ -38,7 +38,6 @@ import { StrPreciosPipe } from './pipes/str-precios.pipe';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { DatePipe } from '@angular/common';
 
-
 @NgModule({
   declarations: [
     AppComponent,
