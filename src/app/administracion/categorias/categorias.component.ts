@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Categoria } from '../../clases/categoria';
 import { CategoriasService } from '../../servicios/categorias.service';
 import { AccountService } from 'src/app/servicios/account.service';
 import { Router } from '@angular/router';
+import { AlertsComponent } from '../alerts/alerts.component';
 
 @Component({
   selector: 'app-categorias',
@@ -12,6 +13,8 @@ import { Router } from '@angular/router';
 })
 
 export class CategoriasComponent implements OnInit {
+  @ViewChild('alertMsj') alertMsj:AlertsComponent = new AlertsComponent();
+
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
 
@@ -74,11 +77,11 @@ export class CategoriasComponent implements OnInit {
     this.catService.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha eliminado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante la eliminacion");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion", 4);
       }
     );
   }
@@ -106,11 +109,11 @@ export class CategoriasComponent implements OnInit {
     this.catService.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha agregado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha agregado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante el agregado");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante el agregado", 4);
       }
     );
   }
@@ -124,11 +127,11 @@ export class CategoriasComponent implements OnInit {
     this.catService.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha modificado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha modificado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante la modificacion");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la modificacion", 4);
       }
     );
   }

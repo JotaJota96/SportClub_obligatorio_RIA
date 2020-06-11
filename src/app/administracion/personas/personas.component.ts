@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Persona } from '../../clases/persona';
 import { PersonasService } from '../../servicios/personas.service';
@@ -7,6 +7,7 @@ import { PrestadoresDeSaludService } from '../../servicios/prestadores-de-salud.
 import { DatePipe } from '@angular/common';
 import { AccountService } from 'src/app/servicios/account.service';
 import { Router } from '@angular/router';
+import { AlertsComponent } from '../alerts/alerts.component';
 
 @Component({
   selector: 'app-personas',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./personas.component.css']
 })
 export class PersonasComponent implements OnInit {
+  @ViewChild('alertMsj') alertMsj:AlertsComponent = new AlertsComponent();
 
   liscaPrestadoresDeSalud:PrestadorDeSalud[];
 
@@ -112,19 +114,15 @@ export class PersonasComponent implements OnInit {
   }
 
   borrar(indice:number){
-
     let id = this.listaPersonas[indice].id;
-
-    console.log("entro en borrar --------" + this.listaPersonas[indice].primerNombre);
-
     this.personaService.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha eliminado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante la eliminacion");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion: " + error.statusText  , 4);
       }
     );
   }
@@ -168,17 +166,14 @@ export class PersonasComponent implements OnInit {
     let indicePDS = this.profileForm.controls['prestadorDeSalud'].value;
 
     let datos = new Persona(0, primerNombre, segundoNombre, primerApellido, segundoApellido, fechaNacimiento, documento, tipoDocumento, telefono, direccion, fechaVenceCarneSalud, this.liscaPrestadoresDeSalud[indicePDS]);
-
-    console.log(datos);
-    
     this.personaService.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha agregado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha agregado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante el agregado");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante el agregado", 4);
       }
     );
   }
@@ -202,11 +197,11 @@ export class PersonasComponent implements OnInit {
     this.personaService.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha modificado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha modificado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante la modificacion");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la modificacion", 4);
       }
     );
   }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../../servicios/account.service';
 import { LoginDTO } from '../../clases/login-dto';
 import {Router} from "@angular/router";
+import { AlertsComponent } from 'src/app/administracion/alerts/alerts.component';
 
 @Component({
   selector: 'app-log-in',
@@ -10,6 +11,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
+  @ViewChild('alertMsj') alertMsj:AlertsComponent = new AlertsComponent();
+
   public loginForm: FormGroup;
   constructor(protected accServ:AccountService, private router: Router) {
 
@@ -36,8 +39,8 @@ export class LogInComponent implements OnInit {
       },
       (error)=>{
         //datos incorrectos
+        this.alertMsj.mostrar("danger", "No se ha podido iniciar sesión", 4);
       }
     );
-
   }
 }

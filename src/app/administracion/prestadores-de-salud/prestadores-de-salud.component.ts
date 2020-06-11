@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PrestadorDeSalud } from '../../clases/prestador-de-salud';
 import { PrestadoresDeSaludService } from '../../servicios/prestadores-de-salud.service';
 import { AccountService } from 'src/app/servicios/account.service';
 import { Router } from '@angular/router';
+import { AlertsComponent } from '../alerts/alerts.component';
 
 @Component({
   selector: 'app-prestadores-de-salud',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./prestadores-de-salud.component.css']
 })
 export class PrestadoresDeSaludComponent implements OnInit {
+  @ViewChild('alertMsj') alertMsj:AlertsComponent = new AlertsComponent();
 
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
@@ -77,11 +79,11 @@ export class PrestadoresDeSaludComponent implements OnInit {
     this.pdsService.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha eliminado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante la eliminacion");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion", 4);
       }
     );
   }
@@ -110,11 +112,11 @@ export class PrestadoresDeSaludComponent implements OnInit {
     this.pdsService.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha agregado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha agregado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante el agregado");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante el agregado", 4);
       }
     );
   }
@@ -127,11 +129,11 @@ export class PrestadoresDeSaludComponent implements OnInit {
     this.pdsService.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha modificado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha modificado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante la modificacion");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la modificacion", 4);
       }
     );
   }

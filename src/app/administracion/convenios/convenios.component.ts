@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Convenio } from '../../clases/convenio';
 import { ConveniosService } from '../../servicios/convenios.service';
 import { AccountService } from 'src/app/servicios/account.service';
 import { Router } from '@angular/router';
+import { AlertsComponent } from '../alerts/alerts.component';
 
 @Component({
   selector: 'app-convenios',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./convenios.component.css']
 })
 export class ConveniosComponent implements OnInit {
+  @ViewChild('alertMsj') alertMsj:AlertsComponent = new AlertsComponent();
+
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
   lstConvenios:Convenio[];
@@ -75,11 +78,11 @@ export class ConveniosComponent implements OnInit {
     this.convServ.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha eliminado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante la eliminacion");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion", 4);
       }
     );
   }
@@ -103,11 +106,11 @@ export class ConveniosComponent implements OnInit {
     this.convServ.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha agregado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha agregado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante el agregado");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante el agregado", 4);
       }
     );
   }
@@ -123,11 +126,11 @@ export class ConveniosComponent implements OnInit {
     this.convServ.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
-        alert("Se ha modificado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha modificado exitosamente", 4);
         this.cargarLista();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante la modificacion");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la modificacion", 4);
       }
     );
   }
