@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Convenio } from '../clases/convenio';
-import { ConveniosService } from '../servicios/convenios.service';
+import { Categoria } from '../../clases/categoria';
+import { CategoriasService } from '../../servicios/categorias.service';
 
 @Component({
-  selector: 'app-convenios',
-  templateUrl: './convenios.component.html',
-  styleUrls: ['./convenios.component.css']
+  selector: 'app-categorias',
+  templateUrl: './categorias.component.html',
+  styleUrls: ['./categorias.component.css']
 })
-export class ConveniosComponent implements OnInit {
+
+export class CategoriasComponent implements OnInit {
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
-  lstConvenios:Convenio[];
+
+  listaCategorias:Categoria[];
   titulo:string ="";
 
   public profileForm: FormGroup;
-  constructor(protected convServ:ConveniosService) {
 
-  }
+  constructor(protected catService:CategoriasService) { }
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
-      porcentajeDeDescuento: new FormControl('', [Validators.required, Validators.minLength(1),Validators.maxLength(8)]),
       activo: new FormControl(false),
       id: new FormControl('')
     });
@@ -30,9 +30,9 @@ export class ConveniosComponent implements OnInit {
   }
 
   cargarLista(){
-    this.convServ.getAll().subscribe(
-      (mdp)=>{
-        this.lstConvenios=mdp;
+    this.catService.getAll().subscribe(
+      (cat)=>{
+        this.listaCategorias=cat;
       }
     );
   }
@@ -44,10 +44,9 @@ export class ConveniosComponent implements OnInit {
 
   abrirModificar(indice:number){ //indice en el array del elemento que se quiere modificar
     this.titulo="Modificar";
-    this.profileForm.controls['nombre'].setValue(this.lstConvenios[indice].nombre);
-    this.profileForm.controls['activo'].setValue(this.lstConvenios[indice].activo);
-    this.profileForm.controls['porcentajeDeDescuento'].setValue(this.lstConvenios[indice].porcentajeDescuento);
-    this.profileForm.controls['id'].setValue(this.lstConvenios[indice].id);
+    this.profileForm.controls['nombre'].setValue(this.listaCategorias[indice].nombre);
+    this.profileForm.controls['activo'].setValue(this.listaCategorias[indice].activo);
+    this.profileForm.controls['id'].setValue(this.listaCategorias[indice].id);
     this.accionAgregar = false;
     this.isModalVisible = true;//muestra el modal.
   }
@@ -60,8 +59,8 @@ export class ConveniosComponent implements OnInit {
   }
 
   borrar(indice:number){
-    let id = this.lstConvenios[indice].id;
-    this.convServ.delete(id).subscribe(
+    let id = this.listaCategorias[indice].id;
+    this.catService.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha eliminado exitosamente");
@@ -83,13 +82,17 @@ export class ConveniosComponent implements OnInit {
     this.cerrar();//cierra el modal
   }
 
+  vaciarCampos(){
+    this.profileForm.controls['nombre'].setValue("");
+    this.profileForm.controls['activo'].setValue(false);
+    this.profileForm.controls['id'].setValue("");
+  }
+
   agregar(){
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
-    let porcentajeDeDescuento = this.profileForm.controls['porcentajeDeDescuento'].value;
-
-    let datos = new Convenio(0, nombre, porcentajeDeDescuento, estado);
-    this.convServ.create(datos).subscribe(
+    let datos = new Categoria(0, nombre, estado, []);
+    this.catService.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha agregado exitosamente");
@@ -104,12 +107,10 @@ export class ConveniosComponent implements OnInit {
   modificar(){
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
-    let porcentajeDeDescuento = this.profileForm.controls['porcentajeDeDescuento'].value;
     let id = this.profileForm.controls['id'].value;
 
-
-    let datos = new Convenio(id, nombre, porcentajeDeDescuento, estado);
-    this.convServ.edit(datos).subscribe(
+    let datos = new Categoria(id, nombre, estado, []);
+    this.catService.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha modificado exitosamente");
@@ -119,13 +120,6 @@ export class ConveniosComponent implements OnInit {
         alert("Ha ocurrido un error durante la modificacion");
       }
     );
-  }
-
-  vaciarCampos(){
-    this.profileForm.controls['nombre'].setValue("");
-    this.profileForm.controls['porcentajeDeDescuento'].setValue("");
-    this.profileForm.controls['activo'].setValue(false);
-    this.profileForm.controls['id'].setValue("");
   }
 
 }

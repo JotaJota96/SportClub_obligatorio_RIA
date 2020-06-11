@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Persona } from '../clases/persona';
-import { PersonasService } from '../servicios/personas.service';
-import { PrestadorDeSalud } from '../clases/prestador-de-salud';
-import { PrestadoresDeSaludService } from '../servicios/prestadores-de-salud.service';
+import { Persona } from '../../clases/persona';
+import { PersonasService } from '../../servicios/personas.service';
+import { PrestadorDeSalud } from '../../clases/prestador-de-salud';
+import { PrestadoresDeSaludService } from '../../servicios/prestadores-de-salud.service';
 import { DatePipe } from '@angular/common';
 
 @Component({

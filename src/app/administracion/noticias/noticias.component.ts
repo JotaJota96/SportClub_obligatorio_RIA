@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Noticia } from '../clases/noticia';
-import { NoticiasService } from '../servicios/noticias.service';
+import { Noticia } from '../../clases/noticia';
+import { NoticiasService } from '../../servicios/noticias.service';
 import { DatePipe } from '@angular/common';
 
 @Component({

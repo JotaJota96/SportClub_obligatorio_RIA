@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MedioDePago } from '../clases/medio-de-pago';
-import { MediosDePagoService } from '../servicios/medios-de-pago.service';
+import { Actividad } from '../../clases/actividad';
+import { ActividadesService } from '../../servicios/actividades.service';
 @Component({
-  selector: 'app-medios-de-pago',
-  templateUrl: './medios-de-pago.component.html',
-  styleUrls: ['./medios-de-pago.component.css']
+  selector: 'app-actividades',
+  templateUrl: './actividades.component.html',
+  styleUrls: ['./actividades.component.css']
 })
-export class MediosDePagoComponent implements OnInit {
+export class ActividadesComponent implements OnInit {
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
-
-  listaMediosDePago:MedioDePago[];
-
+  lstActividades:Actividad[];
   titulo:string ="";
 
   public profileForm: FormGroup;
-
-  constructor(protected mdpService:MediosDePagoService) {
-   }
+  constructor(protected actServ:ActividadesService) {
+    
+  }
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
@@ -26,14 +24,13 @@ export class MediosDePagoComponent implements OnInit {
       activo: new FormControl(false),
       id: new FormControl('')
     });
-
     this.cargarLista();
   }
-
+  
   cargarLista(){
-    this.mdpService.getAll().subscribe(
-      (mdp)=>{
-        this.listaMediosDePago=mdp;
+    this.actServ.getAll().subscribe(
+      (lst)=>{
+        this.lstActividades = lst;
       }
     );
   }
@@ -45,9 +42,9 @@ export class MediosDePagoComponent implements OnInit {
 
   abrirModificar(indice:number){ //indice en el array del elemento que se quiere modificar
     this.titulo="Modificar";
-    this.profileForm.controls['nombre'].setValue(this.listaMediosDePago[indice].nombre);
-    this.profileForm.controls['activo'].setValue(this.listaMediosDePago[indice].activo);
-    this.profileForm.controls['id'].setValue(this.listaMediosDePago[indice].id);
+    this.profileForm.controls['nombre'].setValue(this.lstActividades[indice].nombre);
+    this.profileForm.controls['activo'].setValue(this.lstActividades[indice].activo);
+    this.profileForm.controls['id'].setValue(this.lstActividades[indice].id);
     this.accionAgregar = false;
     this.isModalVisible = true;//muestra el modal.
   }
@@ -60,8 +57,8 @@ export class MediosDePagoComponent implements OnInit {
   }
 
   borrar(indice:number){
-    let id = this.listaMediosDePago[indice].id;
-    this.mdpService.delete(id).subscribe(
+    let id = this.lstActividades[indice].id;
+    this.actServ.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha eliminado exitosamente");
@@ -93,8 +90,8 @@ export class MediosDePagoComponent implements OnInit {
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
 
-    let datos = new MedioDePago(0, nombre, estado);
-    this.mdpService.create(datos).subscribe(
+    let datos = new Actividad(0, nombre, estado);
+    this.actServ.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha agregado exitosamente");
@@ -110,8 +107,8 @@ export class MediosDePagoComponent implements OnInit {
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
     let id = this.profileForm.controls['id'].value;
-    let datos = new MedioDePago(id, nombre, estado);
-    this.mdpService.edit(datos).subscribe(
+    let datos = new Actividad(id, nombre, estado);
+    this.actServ.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha modificado exitosamente");

@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from '../clases/persona';
-import { Convenio } from '../clases/convenio';
-import { Categoria } from '../clases/categoria';
-import { MedioDePago } from '../clases/medio-de-pago';
-import { ContratosService } from '../servicios/contratos.service';
-import { PersonasService } from '../servicios/personas.service';
-import { ConveniosService } from '../servicios/convenios.service';
-import { CategoriasService } from '../servicios/categorias.service';
-import { MediosDePagoService } from '../servicios/medios-de-pago.service';
+import { Persona } from '../../clases/persona';
+import { Convenio } from '../../clases/convenio';
+import { Categoria } from '../../clases/categoria';
+import { MedioDePago } from '../../clases/medio-de-pago';
+import { ContratosService } from '../../servicios/contratos.service';
+import { PersonasService } from '../../servicios/personas.service';
+import { ConveniosService } from '../../servicios/convenios.service';
+import { CategoriasService } from '../../servicios/categorias.service';
+import { MediosDePagoService } from '../../servicios/medios-de-pago.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Contrato } from '../clases/contrato';
+import { Contrato } from '../../clases/contrato';
 import { DatePipe } from '@angular/common';
-import { ContratoDTO } from '../clases/contrato-dto';
+import { ContratoDTO } from '../../clases/contrato-dto';
 
 @Component({
   selector: 'app-conratos',

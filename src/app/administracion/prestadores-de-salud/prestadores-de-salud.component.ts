@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Actividad } from '../clases/actividad';
-import { ActividadesService } from '../servicios/actividades.service';
+import { PrestadorDeSalud } from '../../clases/prestador-de-salud';
+import { PrestadoresDeSaludService } from '../../servicios/prestadores-de-salud.service';
+
 @Component({
-  selector: 'app-actividades',
-  templateUrl: './actividades.component.html',
-  styleUrls: ['./actividades.component.css']
+  selector: 'app-prestadores-de-salud',
+  templateUrl: './prestadores-de-salud.component.html',
+  styleUrls: ['./prestadores-de-salud.component.css']
 })
-export class ActividadesComponent implements OnInit {
+export class PrestadoresDeSaludComponent implements OnInit {
+
   isModalVisible:boolean = false; //se muestra o no el modal
   accionAgregar:boolean = true; //si esta en true es agregar, si esta en false es modificar
-  lstActividades:Actividad[];
+
+  listaPrestadoresDeSalud:PrestadorDeSalud[];
+
   titulo:string ="";
 
   public profileForm: FormGroup;
-  constructor(protected actServ:ActividadesService) {
-    
+
+  constructor(protected pdsService:PrestadoresDeSaludService) { 
   }
 
   ngOnInit(): void {
@@ -26,11 +30,11 @@ export class ActividadesComponent implements OnInit {
     });
     this.cargarLista();
   }
-  
+
   cargarLista(){
-    this.actServ.getAll().subscribe(
-      (lst)=>{
-        this.lstActividades = lst;
+    this.pdsService.getAll().subscribe(
+      (pds)=>{
+        this.listaPrestadoresDeSalud=pds;
       }
     );
   }
@@ -42,9 +46,9 @@ export class ActividadesComponent implements OnInit {
 
   abrirModificar(indice:number){ //indice en el array del elemento que se quiere modificar
     this.titulo="Modificar";
-    this.profileForm.controls['nombre'].setValue(this.lstActividades[indice].nombre);
-    this.profileForm.controls['activo'].setValue(this.lstActividades[indice].activo);
-    this.profileForm.controls['id'].setValue(this.lstActividades[indice].id);
+    this.profileForm.controls['nombre'].setValue(this.listaPrestadoresDeSalud[indice].nombre);
+    this.profileForm.controls['activo'].setValue(this.listaPrestadoresDeSalud[indice].activo);
+    this.profileForm.controls['id'].setValue(this.listaPrestadoresDeSalud[indice].id);
     this.accionAgregar = false;
     this.isModalVisible = true;//muestra el modal.
   }
@@ -57,8 +61,8 @@ export class ActividadesComponent implements OnInit {
   }
 
   borrar(indice:number){
-    let id = this.lstActividades[indice].id;
-    this.actServ.delete(id).subscribe(
+    let id = this.listaPrestadoresDeSalud[indice].id;
+    this.pdsService.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha eliminado exitosamente");
@@ -90,8 +94,8 @@ export class ActividadesComponent implements OnInit {
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
 
-    let datos = new Actividad(0, nombre, estado);
-    this.actServ.create(datos).subscribe(
+    let datos = new PrestadorDeSalud(0, nombre, estado);
+    this.pdsService.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha agregado exitosamente");
@@ -107,8 +111,8 @@ export class ActividadesComponent implements OnInit {
     let nombre = this.profileForm.controls['nombre'].value;
     let estado = this.profileForm.controls['activo'].value;
     let id = this.profileForm.controls['id'].value;
-    let datos = new Actividad(id, nombre, estado);
-    this.actServ.edit(datos).subscribe(
+    let datos = new PrestadorDeSalud(id, nombre, estado);
+    this.pdsService.edit(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
         alert("Se ha modificado exitosamente");

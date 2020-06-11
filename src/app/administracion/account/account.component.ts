@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../servicios/account.service';
+import { AccountService } from '../../servicios/account.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AddRoleDTO } from '../clases/add-role-dto';
+import { AddRoleDTO } from '../../clases/add-role-dto';
 
 @Component({
   selector: 'app-account',

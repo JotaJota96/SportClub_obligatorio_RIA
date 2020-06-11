@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Precio } from '../clases/precio';
-import { PreciosService } from '../servicios/precios.service';
-import { CategoriasService } from '../servicios/categorias.service';
-import { Categoria } from '../clases/categoria';
+import { Precio } from '../../clases/precio';
+import { PreciosService } from '../../servicios/precios.service';
+import { CategoriasService } from '../../servicios/categorias.service';
+import { Categoria } from '../../clases/categoria';
 import { DatePipe } from '@angular/common';
 
 @Component({
