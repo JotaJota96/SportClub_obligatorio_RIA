@@ -11,13 +11,9 @@ export class InterceptorTokenService implements HttpInterceptor {
   constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("Entro al interceptor")
     let loginData:LoginResponseDTO = JSON.parse(localStorage.getItem("loginData"));
 
-    console.log("loguinData = " + loginData);
-
     if (loginData != null){
-      console.log("Se agrega el token")
       const headers = new HttpHeaders({
         'Authorization': 'Bearer ' + loginData.token
       });
@@ -26,7 +22,6 @@ export class InterceptorTokenService implements HttpInterceptor {
       });
       return next.handle(copia);
     }else{
-      console.log("NO se agrega el token")
       const copia = req.clone();
       return next.handle(copia);
     }

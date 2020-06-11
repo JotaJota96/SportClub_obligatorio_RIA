@@ -114,11 +114,7 @@ export class PersonasComponent implements OnInit {
   }
 
   borrar(indice:number){
-
     let id = this.listaPersonas[indice].id;
-
-    console.log("entro en borrar --------" + this.listaPersonas[indice].primerNombre);
-
     this.personaService.delete(id).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto
@@ -170,9 +166,6 @@ export class PersonasComponent implements OnInit {
     let indicePDS = this.profileForm.controls['prestadorDeSalud'].value;
 
     let datos = new Persona(0, primerNombre, segundoNombre, primerApellido, segundoApellido, fechaNacimiento, documento, tipoDocumento, telefono, direccion, fechaVenceCarneSalud, this.liscaPrestadoresDeSalud[indicePDS]);
-
-    console.log(datos);
-    
     this.personaService.create(datos).subscribe(
       (retorno)=>{
         //hacer algo si login es correcto

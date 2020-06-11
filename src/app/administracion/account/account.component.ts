@@ -48,7 +48,6 @@ export class AccountComponent implements OnInit {
     let indiceRol = this.formulario.controls['rol'].value;
 
     let datos = new AddRoleDTO(email, this.listaRoles[indiceRol]);
-    console.log(datos);
     this.accServ.asignarRol(datos).subscribe(
       (ok)=>{
         //hacer algo si login es correcto
