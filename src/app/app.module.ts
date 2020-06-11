@@ -36,6 +36,7 @@ import { AdministracionComponent } from './administracion/administracion.compone
 import { EstadoPipe } from './pipes/estado.pipe';
 import { StrPreciosPipe } from './pipes/str-precios.pipe';
 import { DatePipe } from '@angular/common';
+import { ConratosComponent } from './conratos/conratos.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { DatePipe } from '@angular/common';
     ConveniosComponent,
     AdministracionComponent,
     EstadoPipe,
-    StrPreciosPipe
+    StrPreciosPipe,
+    ConratosComponent
   ],
   imports: [
     BrowserModule,

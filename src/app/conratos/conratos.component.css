@@ -1,0 +1,17 @@
+.agregar{
+    float: right;
+    margin: auto;
+}
+td{
+    padding: 1px; 
+    vertical-align: 
+    middle; font-size: 15px;
+}
+th{ 
+    vertical-align: 
+    middle; font-size:15px;
+}
+
+.respTable{
+    overflow-x: auto;
+}

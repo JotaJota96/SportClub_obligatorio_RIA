@@ -15,6 +15,7 @@ import { PersonasComponent } from './personas/personas.component';
 import { PreciosComponent } from './precios/precios.component';
 import { PrestadoresDeSaludComponent } from './prestadores-de-salud/prestadores-de-salud.component';
 import { AdministracionComponent } from './administracion/administracion.component';
+import { ConratosComponent } from './conratos/conratos.component';
 
 const routes: Routes = [
   {
@@ -76,6 +77,10 @@ const routes: Routes = [
   {
     path:'administracion',
     component:AdministracionComponent
+  },
+  {
+    path:'conratos',
+    component:ConratosComponent
   }
 ];
 
