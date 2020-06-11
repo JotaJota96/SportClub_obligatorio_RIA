@@ -1,0 +1,43 @@
+<div class="p0 m0 clr-row ">
+    <div class="clr-col"></div>
+    <div class="clr-col-12 clr-col-md-10">
+        <h3 class="titulo">Administrar Roles</h3>
+        <div class="clr-row mt4">
+            <div class="clr-col"></div>
+            <div class="cont_Form clr-col-10 clr-col-sm-6 clr-col-md-5 clr-col-lg-4">
+                 <app-alerts #alertMsj ></app-alerts>
+
+                <form clrForm class="miForm" [formGroup]="formulario">
+                    <div class="login-group">
+                        <clr-input-container>
+                            <label >Email</label>
+                            <input clrInput type="email" name="email" id="email" required formControlName="email" />
+                            <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                        </clr-input-container>
+                        <br>
+                        <clr-select-container>
+                            <label >Rol</label>
+                            <select clrSelect name="type" formControlName="rol">
+                                <option *ngFor="let item of listaRoles; let i = index" value="{{i}}">{{item}}</option>
+                            </select>
+                        </clr-select-container>
+                        <br>
+                        <button class=" btn btn-primary" type="button" (click)="confirmar()" [disabled]="!formulario.valid">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="clr-col"></div>
+        </div>
+    </div>
+    <div class="clr-col"></div>
+</div>
+
+
+<!--
+        input email 
+        desplegable con roles [
+            "USER",
+            "ADMIN",
+            "SECRETARIA"
+        ]
+        -->
