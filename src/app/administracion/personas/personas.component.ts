@@ -122,7 +122,7 @@ export class PersonasComponent implements OnInit {
         this.cargarLista();
       },
       (error)=>{
-        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion", 4);
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion: " + error.statusText  , 4);
       }
     );
   }
