@@ -12,6 +12,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Contrato } from '../../clases/contrato';
 import { DatePipe } from '@angular/common';
 import { ContratoDTO } from '../../clases/contrato-dto';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-conratos',
@@ -36,11 +38,15 @@ export class ConratosComponent implements OnInit {
               protected convenioService: ConveniosService,
               protected categoriaService: CategoriasService,
               protected mdpService:MediosDePagoService,
-              protected datepipe: DatePipe){
+              protected datepipe: DatePipe,
+              protected accServ:AccountService, 
+              private router:Router){
 
   }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       fechaHoraGenerado: new FormControl('', [Validators.required]),
       usuarioGenero: new FormControl('', [Validators.required]),
@@ -60,6 +66,11 @@ export class ConratosComponent implements OnInit {
 
   }
 
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
+  }
   cargarLista(){
     this.contratoService.getAll().subscribe(
       (cont)=>{

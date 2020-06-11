@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PrestadorDeSalud } from '../../clases/prestador-de-salud';
 import { PrestadoresDeSaludService } from '../../servicios/prestadores-de-salud.service';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prestadores-de-salud',
@@ -19,16 +21,26 @@ export class PrestadoresDeSaludComponent implements OnInit {
 
   public profileForm: FormGroup;
 
-  constructor(protected pdsService:PrestadoresDeSaludService) { 
+  constructor(protected pdsService:PrestadoresDeSaludService,
+              protected accServ:AccountService, 
+              private router:Router) { 
   }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
       activo: new FormControl(false),
       id: new FormControl('')
     });
     this.cargarLista();
+  }
+
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
   }
 
   cargarLista(){

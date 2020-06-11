@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Convenio } from '../../clases/convenio';
 import { ConveniosService } from '../../servicios/convenios.service';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-convenios',
@@ -15,11 +17,15 @@ export class ConveniosComponent implements OnInit {
   titulo:string ="";
 
   public profileForm: FormGroup;
-  constructor(protected convServ:ConveniosService) {
+  constructor(protected convServ:ConveniosService,
+              protected accServ:AccountService, 
+              private router:Router) {
 
   }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
       porcentajeDeDescuento: new FormControl('', [Validators.required, Validators.minLength(1),Validators.maxLength(8)]),
@@ -29,6 +35,11 @@ export class ConveniosComponent implements OnInit {
     this.cargarLista();
   }
 
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
+  }
   cargarLista(){
     this.convServ.getAll().subscribe(
       (mdp)=>{

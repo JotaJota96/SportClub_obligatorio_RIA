@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Actividad } from '../../clases/actividad';
 import { ActividadesService } from '../../servicios/actividades.service';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/servicios/account.service';
 @Component({
   selector: 'app-actividades',
   templateUrl: './actividades.component.html',
@@ -14,11 +16,16 @@ export class ActividadesComponent implements OnInit {
   titulo:string ="";
 
   public profileForm: FormGroup;
-  constructor(protected actServ:ActividadesService) {
+
+  constructor(protected actServ:ActividadesService,
+              protected accServ:AccountService,
+              protected router:Router) {
     
   }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
       activo: new FormControl(false),
@@ -26,7 +33,13 @@ export class ActividadesComponent implements OnInit {
     });
     this.cargarLista();
   }
-  
+
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
+  }
+
   cargarLista(){
     this.actServ.getAll().subscribe(
       (lst)=>{

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MedioDePago } from '../../clases/medio-de-pago';
 import { MediosDePagoService } from '../../servicios/medios-de-pago.service';
+import { AccountService } from 'src/app/servicios/account.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-medios-de-pago',
   templateUrl: './medios-de-pago.component.html',
@@ -17,10 +19,14 @@ export class MediosDePagoComponent implements OnInit {
 
   public profileForm: FormGroup;
 
-  constructor(protected mdpService:MediosDePagoService) {
+  constructor(protected mdpService:MediosDePagoService,
+              protected accServ:AccountService, 
+              private router:Router) {
    }
 
   ngOnInit(): void {
+    this.verificarPermisos();
+    
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
       activo: new FormControl(false),
@@ -30,6 +36,11 @@ export class MediosDePagoComponent implements OnInit {
     this.cargarLista();
   }
 
+  private verificarPermisos():void{
+    if ( ! this.accServ.isSecretary()){
+      this.router.navigate(['/administracion']);
+    }
+  }
   cargarLista(){
     this.mdpService.getAll().subscribe(
       (mdp)=>{
