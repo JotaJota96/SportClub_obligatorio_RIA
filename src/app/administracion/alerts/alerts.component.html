@@ -1,0 +1,21 @@
+<div [hidden]="oculto" class="alert " role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="icono"></clr-icon>
+            </div>
+            <span class="alert-text">{{mensaje}}</span>
+        </div>
+    </div>
+    <button (click)="cerrar()" type="button" class="close" aria-label="Close">
+        <clr-icon aria-hidden="true" shape="close"></clr-icon>
+    </button>
+</div>
+
+<!--
+alert-success   check-circle
+alert-info      info-circle
+alert-warning   exclamation-triangle
+alert-danger    exclamation-circle
+-->
+
