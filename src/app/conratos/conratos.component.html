@@ -1,0 +1,146 @@
+<div class="p0 m0 clr-row ">
+    <div class="clr-col"></div>
+  
+    <div class="clr-col-12 clr-col-md-10">
+  
+      <h3 class="titulo">Contratos</h3>
+  
+      <div class="clr-row mt4">
+        <div class="clr-col"></div>
+  
+        <div class="respTable clr-col-12 ">
+  
+          <table class="table">
+            <thead>
+              <tr>
+
+                <th>ID</th>
+                <th>Generado</th>
+                <th>Sexo</th>
+                <th>Comienzo</th>
+                <th>Socio</th>
+                <th>Convenio</th>
+                <th>Categoria</th>
+                <th>medio De Pago</th>
+                <th>Estado</th>
+
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+  
+              <!--Datos de la tabla-->
+              <tr *ngFor="let m of listaContratos; let i = index">
+                <th>{{m.id}}</th>
+                <th>{{m.fechaHoraGenerado | date}}</th>
+                <th>{{m.usuarioGenero}}</th>
+                <th>{{m.fechaComienzo | date}}</th>
+                <th>{{m.socio.documento}}</th>
+                <th>{{m.convenio.nombre}}</th>
+                <th>{{m.categoria.nombre}}</th>
+                <th>{{m.medioDePago.nombre}}</th>
+                <th>{{m.activo}}</th>
+                <td>
+                  <div class="m1 btn-group btn-primary">
+                    <button class="btn btn-danger" (click)="borrar(i)"><clr-icon shape="trash" class="is-solid"></clr-icon></button>
+                    <button class="btn btn-primary" (click)="abrirModificar(i)"><clr-icon shape="pencil" class="is-solid"></clr-icon></button>
+                  </div>
+                </td>
+              </tr>
+  
+             <!--Fin de Datos de la tabla-->
+            </tbody>
+          </table>
+        </div>
+        <div class="clr-col"></div>
+      </div>
+      <div class="agregar clr-row">
+        <div class="clr-col-12"><button class="btn btn-success" (click)="abrirAgregar()"><clr-icon shape="plus-circle" class="is-solid"></clr-icon> Agregar</button></div>
+      </div>
+    </div>
+    <div class="clr-col"></div>
+  </div>
+
+  <!--*******************************  MODAL  Agregar/modificar *******************************-->
+  <clr-modal [(clrModalOpen)]="isModalVisible">
+    <h3 class="modal-title" >{{titulo}} Precio</h3>
+    <div class="modal-body">
+      <!--******************* Formulario  *********************-->
+      <form [formGroup]="profileForm" clrForm >
+
+        <clr-input-container>
+          <label >Generado</label>
+          <input clrInput type="date" formControlName="fechaHoraGenerado" >
+        </clr-input-container>
+
+        <clr-select-container>
+            <label >Sexo</label>
+            <select clrSelect  name="Sexo" formControlName="usuarioGenero">
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+                <option value="Neutro">Neutro</option>
+            </select>
+        </clr-select-container>
+
+        <clr-input-container>
+            <label >Comienzo</label>
+            <input clrInput type="date" formControlName="fechaComienzo" >
+        </clr-input-container>
+
+        <clr-select-container>
+            <label >Socio</label>
+            <select clrSelect name="socio" formControlName="socio">
+                <option *ngFor="let c of liscaPersonas;let i = index" value="{{i}}" > <!--selected="c.nombre=='dfsdsfds'"-->
+                  {{c.primerNombre}}
+                </option>
+            </select>
+        </clr-select-container>
+
+        <clr-select-container>
+            <label >Convenio</label>
+            <select clrSelect name="convenio" formControlName="convenio">
+                <option *ngFor="let c of listaConvenios;let i = index" value="{{i}}" > <!--selected="c.nombre=='dfsdsfds'"-->
+                  {{c.nombre}}
+                </option>
+            </select>
+        </clr-select-container>
+
+        <clr-select-container>
+            <label >Categoria</label>
+            <select clrSelect name="categoria" formControlName="categoria">
+                <option *ngFor="let c of listaCategoria;let i = index" value="{{i}}" > <!--selected="c.nombre=='dfsdsfds'"-->
+                  {{c.nombre}}
+                </option>
+            </select>
+        </clr-select-container>
+
+        <clr-select-container>
+            <label >medio De Pago</label>
+            <select clrSelect name="medioDePago" formControlName="medioDePago">
+                <option *ngFor="let c of listaMedioDePago;let i = index" value="{{i}}" > <!--selected="c.nombre=='dfsdsfds'"-->
+                  {{c.nombre}}
+                </option>
+            </select>
+        </clr-select-container>
+
+        <clr-checkbox-container>
+            <clr-checkbox-wrapper>
+              <input type="checkbox" clrCheckbox formControlName="activo">
+              <label>Actvio</label>
+            </clr-checkbox-wrapper>
+        </clr-checkbox-container>
+      
+
+      <input type="hidden" formControlName="id">
+
+      </form>
+      <!--*******************.............*********************-->
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="cerrar()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="confirmar()" [disabled]="!profileForm.valid">Confirmar</button>
+    </div>
+    
+  </clr-modal>
+  <!--******************************************************************************-->
