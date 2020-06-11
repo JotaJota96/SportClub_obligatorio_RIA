@@ -23,7 +23,7 @@ export class ContratosService {
     return this.http.get<Contrato>(this.apiURL + '/' + id);
   }
   edit(datos:ContratoDTO){
-    return this.http.put<Contrato>(this.apiURL + '/' + datos.id, datos);
+    return this.http.put<Contrato>(this.apiURL + '/' + datos.id_Contrato, datos);
   }
   delete(id:number){
     return this.http.delete<Contrato>(this.apiURL + '/' + id);

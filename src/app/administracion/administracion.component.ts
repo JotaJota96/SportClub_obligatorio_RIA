@@ -24,6 +24,7 @@ export class AdministracionComponent implements OnInit {
       this.opcionesMenu.push(new OpcionMenu("Prestadores de Salud", "/prestadoresDeSalud"));
       this.opcionesMenu.push(new OpcionMenu("Precios",              "/precios"           ));
       this.opcionesMenu.push(new OpcionMenu("Personas",             "/personas"          ));
+      this.opcionesMenu.push(new OpcionMenu("Conratos",             "/conratos"          ));
     }
     if (this.accServ.isAdmin()){
       this.opcionesMenu.push(new OpcionMenu("Administrar Roles", "/account"           ));
