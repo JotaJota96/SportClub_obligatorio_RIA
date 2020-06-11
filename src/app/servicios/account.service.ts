@@ -36,7 +36,7 @@ export class AccountService {
     return this.http.post(this.apiURL + '/addrole', datos);
   }
 
-  getRoles(datos:AddRoleDTO){
+  getRoles(){
     return this.http.post<string[]>(this.apiURL + '/roles', null);
   }
 
