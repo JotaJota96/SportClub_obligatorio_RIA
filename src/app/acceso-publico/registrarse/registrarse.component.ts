@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../../servicios/account.service';
 import {Router} from "@angular/router";
 import { RegistroDTO } from '../../clases/registro-dto';
+import { AlertsComponent } from 'src/app/administracion/alerts/alerts.component';
 
 @Component({
   selector: 'app-registrarse',
@@ -10,6 +11,8 @@ import { RegistroDTO } from '../../clases/registro-dto';
   styleUrls: ['./registrarse.component.css']
 })
 export class RegistrarseComponent implements OnInit {
+  @ViewChild('alertMsj') alertMsj:AlertsComponent = new AlertsComponent();
+
   public registrarForm: FormGroup;
   constructor(protected accServ:AccountService, private router: Router) { }
 
@@ -37,6 +40,7 @@ export class RegistrarseComponent implements OnInit {
       },
       (error)=>{
         //datos incorrectos
+        this.alertMsj.mostrar("danger", "No se ha podido realizar el registro", 4);
       }
     );
 

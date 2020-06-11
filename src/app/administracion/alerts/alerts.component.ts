@@ -24,7 +24,7 @@ export class AlertsComponent implements OnInit {
    * @param msj Mensaje a mostrar
    * @param segs Tiempo que dura el mensaje en pantalla (segundos). (si se omite no se autooculta)
    */
-  mostrar(tipo:string, msj:string, segs:number){
+  mostrar(tipo:string, msj:string, segs:number = 0){
     this.oculto = false;
     this.mensaje = msj;
     this.setVariables(tipo);

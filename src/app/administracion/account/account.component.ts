@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AccountService } from '../../servicios/account.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AddRoleDTO } from '../../clases/add-role-dto';
 import { Router } from '@angular/router';
+import { AlertsComponent } from '../alerts/alerts.component';
 
 @Component({
   selector: 'app-account',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+  @ViewChild('alertMsj') alertMsj:AlertsComponent = new AlertsComponent();
+
 
   public formulario: FormGroup;
   listaRoles:string[];
@@ -49,11 +52,11 @@ export class AccountComponent implements OnInit {
     this.accServ.asignarRol(datos).subscribe(
       (ok)=>{
         //hacer algo si login es correcto
-        alert("Se ha agregado exitosamente");
+        this.alertMsj.mostrar("success", "Se ha asignado el rol exitosamente", 4);
         this.vaciarCampos();
       },
       (error)=>{
-        alert("Ha ocurrido un error durante el agregado");
+        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la asignación del rol", 4);
       }
     );
   }
