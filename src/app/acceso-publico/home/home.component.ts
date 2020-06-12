@@ -10,6 +10,7 @@ import { NoticiasService } from '../../servicios/noticias.service';
 export class HomeComponent implements OnInit {
   // noticias que se van a mostrar
   isModalVisible:boolean = false; //se muestra o no el modal
+  mostrarSpinner:boolean = true;
 
   noticiaActual:Noticia;
 
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.notiServ.getActivas().subscribe(
       (lista) => {
+        this.mostrarSpinner = false;
         this.noticias = lista;
       }
     );
