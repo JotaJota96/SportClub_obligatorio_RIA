@@ -6,8 +6,16 @@
         <h3 class="titulo">Noticias</h3>
 
         <div class="clr-row mt4">
-            <clr-spinner class="clr-align-self-center" *ngIf="mostrarSpinner"></clr-spinner>
+            <div class="clr-col-12 clr-row mt4" *ngIf="mostrarSpinner">
+                <div class="clr-col"></div>
+                <div class="clr-col-2">
+                    <clr-spinner class="clr-align-self-center"></clr-spinner>
+                </div>
+                <div class="clr-col"></div>
+            </div>
 
+            <!--
+                -->
             <!-- Inicio de las noticias-->
             <div class="Cuerpo clr-col-12 clr-col-md-6 clr-col-lg-4" 
                 *ngFor="let n of noticias; let i = index">
