@@ -5,6 +5,16 @@
                 <clr-icon class="alert-icon" shape="icono"></clr-icon>
             </div>
             <span class="alert-text">{{mensaje}}</span>
+            <div class="alert-actions" [hidden]="!mostrarAcciones">
+                <clr-dropdown>
+                    <button class="dropdown-toggle" (click)="confirmar()">
+                        Confirmar
+                    </button>
+                    <button class="dropdown-toggle" (click)="cerrar()">
+                        Cancelar
+                    </button>
+                </clr-dropdown>
+            </div>
         </div>
     </div>
     <button (click)="cerrar()" type="button" class="close" aria-label="Close">

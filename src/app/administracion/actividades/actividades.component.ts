@@ -73,15 +73,19 @@ export class ActividadesComponent implements OnInit {
   }
 
   borrar(indice:number){
-    let id = this.lstActividades[indice].id;
-    this.actServ.delete(id).subscribe(
-      (retorno)=>{
-        //hacer algo si login es correcto
-        this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
-        this.cargarLista();
-      },
-      (error)=>{
-        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion", 4);
+    this.alertMsj.solicitarConfirmacion("¿Seguro que desea eliminar?", 
+      ()=>{
+        let id = this.lstActividades[indice].id;
+        this.actServ.delete(id).subscribe(
+          (retorno)=>{
+            //hacer algo si login es correcto
+            this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
+            this.cargarLista();
+          },
+          (error)=>{
+            this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion", 4);
+          }
+        );
       }
     );
   }

@@ -73,15 +73,19 @@ export class CategoriasComponent implements OnInit {
   }
 
   borrar(indice:number){
-    let id = this.listaCategorias[indice].id;
-    this.catService.delete(id).subscribe(
-      (retorno)=>{
-        //hacer algo si login es correcto
-        this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
-        this.cargarLista();
-      },
-      (error)=>{
-        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion", 4);
+    this.alertMsj.solicitarConfirmacion("¿Seguro que desea eliminar?", 
+      ()=>{
+        let id = this.listaCategorias[indice].id;
+        this.catService.delete(id).subscribe(
+          (retorno)=>{
+            //hacer algo si login es correcto
+            this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
+            this.cargarLista();
+          },
+          (error)=>{
+            this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion", 4);
+          }
+        );
       }
     );
   }

@@ -66,7 +66,6 @@ export class ConratosComponent implements OnInit {
     this.cargarConvenio();
     this.cargarCategoria();
     this.cargarMedioDePago();
-
   }
 
   private verificarPermisos():void{
@@ -120,15 +119,19 @@ export class ConratosComponent implements OnInit {
   }
 
   borrar(indice:number){
-    let id = this.listaContratos[indice].id;
-    this.contratoService.delete(id).subscribe(
-      (retorno)=>{
-        //hacer algo si login es correcto
-        this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
-        this.cargarLista();
-      },
-      (error)=>{
-        this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion: " + error.statusText, 4);
+    this.alertMsj.solicitarConfirmacion("¿Seguro que desea eliminar?",
+      () => {
+        let id = this.listaContratos[indice].id;
+        this.contratoService.delete(id).subscribe(
+          (retorno) => {
+            //hacer algo si login es correcto
+            this.alertMsj.mostrar("success", "Se ha eliminado exitosamente", 4);
+            this.cargarLista();
+          },
+          (error) => {
+            this.alertMsj.mostrar("danger", "Ha ocurrido un error durante la eliminacion: " + error.statusText, 4);
+          }
+        );
       }
     );
   }
@@ -255,9 +258,6 @@ export class ConratosComponent implements OnInit {
       }
     );
   }
-
-
-
 
   obtenerIndicePersonas(id:number){
     for(let i=0; i < this.liscaPersonas.length; i++){

@@ -11,6 +11,8 @@ export class AlertsComponent implements OnInit {
   icono: string;
   oculto: boolean;
   mensaje: string;
+  mostrarAcciones: boolean;
+  alConfirmar: Function;
 
   constructor() { }
 
@@ -35,11 +37,21 @@ export class AlertsComponent implements OnInit {
     }
   }
 
+  solicitarConfirmacion(msj:string, callback:Function){
+    this.alConfirmar = callback;
+    this.mostrar("confirm", msj);
+  }
+
   /**
    * Cierra el alert vaciando las variables
    */
   cerrar(){
     this.inicializarVariables();
+  }
+
+  confirmar(){
+    this.alConfirmar();
+    this.cerrar();
   }
 
   /**
@@ -64,6 +76,11 @@ export class AlertsComponent implements OnInit {
         this.clases = "alert-danger";
         this.icono = "exclamation-circle";
         break;
+      case "confirm":
+        this.clases = "alert-warning";
+        this.icono = "exclamation-triangle";
+        this.mostrarAcciones = true;
+        break;
       default:
         this.setVariables("info");
         this.mensaje = "Le erraste en el tipo de alert";
@@ -79,5 +96,7 @@ export class AlertsComponent implements OnInit {
     this.icono = "";
     this.oculto = true;
     this.mensaje = "";
+    this.mostrarAcciones = false;
+    this.alConfirmar = null;
   }
 }
