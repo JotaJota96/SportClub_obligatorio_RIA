@@ -35,8 +35,15 @@ export class AlertsComponent implements OnInit {
         this.cerrar();
       }, segs*1000);
     }
+    // scrollea hasta el alert
+    setTimeout(() => {
+    let alert = document.getElementById('alert-superior');
+    // Si scroll suave
+    //alert.scrollIntoView();
+    // con scroll suave
+    alert.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    });
   }
-
   solicitarConfirmacion(msj:string, callback:Function){
     this.alConfirmar = callback;
     this.mostrar("confirm", msj);
