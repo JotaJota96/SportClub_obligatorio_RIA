@@ -1,27 +1,23 @@
 # SportClub
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+## Información
+El laboratorio final se plantea en el marco de la edición 2020 de la asignatura **Taller de Aplicaciones de Internet Ricas**. El mismo consiste en el diseño y construccion de una aplicacion SPA (Single Page Application) utilizando un framework CSS específico.  
+El objetivo es aplicar los conceptos brindados en clase más los conocimientos adquiridos durante la investigacion de los frameworks.
+Dicha aplicación debe desarrollarse utilizando el framework Angular y Clarity CSS. 
 
-## Development server
+## Capturas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Página de noticias
+<img src="./documentacion/capturas/1.png">
 
-## Code scaffolding
+### Login
+<img src="./documentacion/capturas/2.png">
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Menú de funcionarios
+<img src="./documentacion/capturas/3.png">
 
-## Build
+### Listado
+<img src="./documentacion/capturas/4.png">
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Formulario de modificación
+<img src="./documentacion/capturas/5.png">
