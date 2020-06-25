@@ -40,10 +40,10 @@ export class PersonasComponent implements OnInit {
     this.verificarPermisos();
     
     this.profileForm = new FormGroup({
-      primerNombre: new FormControl('', [Validators.required, Validators.minLength(5),Validators.maxLength(50)]),
-      segundoNombre: new FormControl('', [Validators.required, Validators.minLength(5),Validators.maxLength(50)]),
-      primerApellido: new FormControl('', [Validators.required, Validators.minLength(5),Validators.maxLength(50)]),
-      segundoApellido: new FormControl('', [Validators.required, Validators.minLength(5),Validators.maxLength(50)]),
+      primerNombre: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(50)]),
+      segundoNombre: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(50)]),
+      primerApellido: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(50)]),
+      segundoApellido: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(50)]),
       fechaNacimiento: new FormControl('', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]),
       documento: new FormControl('', [Validators.required, Validators.minLength(8),Validators.maxLength(8)]),
       tipoDocumento: new FormControl('', [Validators.required, Validators.minLength(1),Validators.maxLength(8)]),
